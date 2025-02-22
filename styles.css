@@ -1,0 +1,39 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fbd4e8;
+    text-align: justify; /* Выравнивание по ширине */
+    padding: 10px;      /* Отступ со всех сторон 10 пикселей */
+    align-items: center;        /* Вертикальное выравнивание (по центру) */      
+    
+}
+
+header {
+    background-color: #333;
+    color: #fad9ef;
+    padding: 1em 0;
+    text-align: center;
+    text-align: justify
+}
+
+ h1 {
+    font-size: 2em; 
+  }
+  
+  p {
+    font-size: 1rem; 
+    width: 300px; /* Фиксированная ширина */
+    /* ИЛИ */
+    max-width: 500px;
+    
+  }
+  ol {
+    text-align: justify; /* Выравнивание по ширине (распределяет текст равномерно между краями) */
+    vertical-align: middle;    /* Выравнивание по середине */
+    padding: 20px;      /* Отступ со всех сторон 10 пикселей */
+    padding-top: 0px;    /* Отступ сверху 20 пикселей */
+   
+  }
+
+  
