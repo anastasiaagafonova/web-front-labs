@@ -24,7 +24,6 @@ header {
   p {
     font-size: 1rem; 
     width: 300px; /* Фиксированная ширина */
-    /* ИЛИ */
     max-width: 500px;
     
   }
