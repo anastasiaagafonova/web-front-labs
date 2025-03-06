@@ -1,8 +1,8 @@
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #fbd4e8;
+    font-family: Arial, sans-serif;  /* Устанавливает шрифт для всего текста */
+    margin: 0; /* Убирает внешние отступы */
+    padding: 0;   /* Убирает внутренние отступы */
+    background-color: #fbd4e8;  /* Устанавливает светло-розовый цвет фона */
     text-align: justify; /* Выравнивание по ширине */
     padding: 10px;      /* Отступ со всех сторон 10 пикселей */
     align-items: center;        /* Вертикальное выравнивание (по центру) */      
@@ -10,29 +10,29 @@ body {
 }
 
 header {
-    background-color: #333;
-    color: #fad9ef;
-    padding: 1em 0;
-    text-align: center;
-    text-align: justify
-}
+    background-color: #333;   /* Устанавливает темно-серый цвет фона */
+    color: #fad9ef; /* Устанавливает светло-розовый цвет текста */
+    padding: 1em 0; /* Добавляет внутренний отступ 1em сверху и снизу, 0 слева и справа */
+    text-align: center; /* Выравнивает текст в header по центру */
+    text-align: justify  /* Выравнивает текст по ширине. */
+  }
+
 
  h1 {
-    font-size: 2em; 
-  }
-  
+  font-size: 2em;  /* Устанавливает размер шрифта для h1 в 2 раза больше текущего */
+}
+
   p {
-    font-size: 1rem; 
+    font-size: 1rem; /* Устанавливает размер шрифта для p равным текущему базовому размеру шрифта */
     width: 300px; /* Фиксированная ширина */
-    max-width: 500px;
-    
-  }
+    max-width: 500px; /* Устанавливает максимальную ширину для p равной 500px */
+  
+}
   ol {
-    text-align: justify; /* Выравнивание по ширине (распределяет текст равномерно между краями) */
+    text-align: justify; /* Выравнивание по ширине  */
     vertical-align: middle;    /* Выравнивание по середине */
     padding: 20px;      /* Отступ со всех сторон 10 пикселей */
     padding-top: 0px;    /* Отступ сверху 20 пикселей */
-   
-  }
+}
 
   
