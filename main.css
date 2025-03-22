@@ -22,3 +22,11 @@ header {
     font-family: Arial;
     margin: 0px;
 }
+a {
+    color: green;
+    text-decoration: none;
+}
+a:hover {
+    color: red;
+    text-decoration: underline;
+}
