@@ -26,7 +26,17 @@ a {
     color: green;
     text-decoration: none;
 }
+a:link {
+    color: darkgreen;
+}
+a:visited {
+    color: darkgray;
+}
 a:hover {
     color: red;
     text-decoration: underline;
+}
+a:active {
+    color:black;
+    opacity: 0.3;
 }
