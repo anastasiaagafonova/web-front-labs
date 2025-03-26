@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Агафонова Анастасия. Дополнительное</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon-32x32.png">
+    <link rel="icon" href="favicon-16x16.png">
+    <style>
+        div.book div {
+            display: none;  
+        }
+        .book-content {
+            padding: 10px 20px;  /* Увеличиваем отступы */
+            height: auto;        /* Автоматическая высота содержимого */
+            transition-delay: 2s; /
+        }
+        h1:hover+div {
+            display: block;
+            font-weight: bold;
+            border-color: #007bff; /* Изменяем цвет границы */
+            background-color: #fff;  /* Изменяем цвет фона */
+            color: #007bff;         /* Изменяем цвет текста */
+            box-shadow: 10px 10px 20px #007bff40; /* Изменяем тень */
+            border-radius: 20px;   
+        }
+
+        .book {
+            width: 700px;
+            border: 3px solid green;
+            display: inline-block;
+            vertical-align: top;
+            padding: 10px;
+            text-align: center;
+            border-radius: 10px;   
+            margin: 10px;
+            border-radius: 10px;
+            box-shadow: 5px 5px 10px #888888;
+            overflow: hidden; 
+            transition: all 5s ease;
+            cursor: pointer;
+        }
+        .book-bloc:hover {
+            padding: 0 20px; /* Изначально скрываем отступы */
+            height: 0;        /* Изначально скрываем высоту */
+            overflow: hidden; /* Скрываем контент */
+            transition: all 0.5s ease;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        НГТУ, ФБ, Лабораторная работа 3
+                <hr>
+    </header>
+    <main>
+        <div class="book">
+            <h1>Зачем читать книги?</h1>
+            
+            <div>
+                Книги — неиссякаемый источник слов и оборотов речи, которые редко звучат в повседневном общении.
+                Во время чтения включается зрительная память. Мы запоминаем, как визуально выглядят слова, 
+                а потом по инерции пишем их правильно. Книги могут рассказать о прошлом и настоящем, об истории 
+                других стран и культуре разных народов. В общем, читать стоит, чтобы узнать много интересного об окружающем мире.
+                Читая книги, мы погружаемся в созданные автором миры. Наше воображение рисует их по описанию в тексте.
+                Если книга увлекательная, мы полностью фокусируемся на истории, которую рассказывает автор. Ещё запоминаем героев 
+                и все события, которые с ними происходят. А после прочтения какое-то время размышляем о произведении.
+                Книги помогают посмотреть на окружающий мир и разные события глазами персонажей. Часто эти персонажи совершенно на нас 
+                не похожи, а могут и вовсе не нравится. 
+                Чтение требует фокусирования на процессе и концентрации внимания. Это как спортивная тренировка для мозга. А после 
+                тренировки сон почти всегда лучше. Плюс чтение помогает отвлечься от проблем и успокоиться.
+            </div>
+        </div>
+    </main>
+    <footer>
+        &copy; Анастасия Агафонова, ФБИ-32, 2 курс, 2025 
+    </footer>
+</body>
+</html>
