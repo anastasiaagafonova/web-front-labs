@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Прогресс</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../favicon-32x32.png">
+    <link rel="icon" href="../favicon-16x16.png">
+    <style>
+         main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 80vh;
+            background-color: #f0f0f0;
+            margin: 0;
+        }
+        .box {
+            text-align: center;
+            border: 1px solid #888; /* Тонкая линия вместо double */
+            width: 300px; /* Меньше размер */
+            height: 200px; /* Меньше высота */
+            background-color: #ddd; /* Серый цвет */
+            border-radius: 10px; /* Закругленные края */
+            position: relative;
+            /* Убрали фиксированное позиционирование */
+        }
+
+        .text {
+            color: rgb(0, 0, 2);
+            font-size: 16pt;
+            margin-top: 10px;
+        }
+
+        .progress-box {
+            border: 1px solid #888; /* Тонкая линия для рамки */
+            width: 200px; /* Уменьшили размер */
+            height: 20px; /* Уменьшили высоту */
+            background: #eee;
+            margin-bottom: 20px;
+            position: relative;
+            left: 50px; /* Позиционирование относительно .box */
+            top: 30px;
+            overflow: hidden;
+            border-radius: 5px; /* Скругленные края */
+        }
+
+        #progress-bar {
+            height: 100%;
+            width: 0;
+            background: #205a18;
+            transition: width 5s linear; /* Добавили linear для плавности */
+        }
+
+        .button {
+            padding: 8px 10px; /* Уменьшили padding */
+            background: #521111;
+            color: #ffffff;
+            border-radius: 10px; /* Уменьшили скругление */
+            border: none;
+            box-shadow: 1px 1px 3px rgb(4, 0, 6); /* Уменьшили тень */
+            transition: 0.2s;
+            position: relative;
+            top: 100px; /* Подняли кнопку выше */
+            cursor: pointer;
+        }
+
+        .button:hover {
+            box-shadow: 2px 2px 5px rgb(0, 0, 0); /* Уменьшили тень при наведении */
+        }
+
+        .button:active {
+            box-shadow: none;
+        }
+
+        .button:active + .progress-box #progress-bar {
+            width: 100%;
+        }
+        </style>
+    </head>
+    <body>
+        <header>
+            НГТУ, ФБ, Лабораторная работа 4
+        </header>
+        <main>
+            <div class="box">
+                <div class="text">Степень прогресса</div>
+                <button class="button">Нажмите и удерживайте</button>
+                <div class="progress-box">
+                    <div id="progress-bar"></div>
+                </div>
+            </div>
+        </main>
+        <footer>
+            &copy; Анастасия Агафонова, ФБИ-32, 2 курс, 2025
+        </footer>
+    </body>
+</html>
