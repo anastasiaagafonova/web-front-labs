@@ -1,124 +1,236 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Теги позиционирования</title>
-  <!DOCTYPE html>
-  <html lang="ru">
-  <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Целюх Анастасия Степановна. Облака тегов</title>
-      <link rel="stylesheet" href="../main.css">
-      <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
-      <link rel="icon" href="../Icon/favicon-16x16.png">
-      <link rel="icon" href="../Icon/favicon-32x32.png">
-      <link rel="icon" href="../Icon/favicon.ico">
-      <style>
-          main {
-              display: flex;
-              justify-content: center;
-              font-family:'Times New Roman';
-          }
-  
-          .cloud {
-              justify-content: center;
-              align-items: center;
-              position: relative;
-              top: 40px;
-              width: 80%;
-              height: 70px;
-              display: flex;
-              flex-wrap: wrap;
-          }
-  
-          .tag {
-              margin: 20px;
-              transition: 0.5s;
-              cursor: pointer;
-          } 
-          .tag:hover {
-              transform: scale(2.1);
-              text-shadow: 5px 5px 5px rgba(48, 13, 203, 0.5);
-              z-index: 10;
-          }
-  
-          .tag1 { 
-              color: #0af816; 
-              font-size: 10pt; 
-              transform: rotate(-70deg); 
-          }
-          .tag2 { 
-              color: #106d27; 
-              font-size: 30pt;  
-              transform: rotate(10deg); 
-          }
-          .tag3 { 
-              color: #da0ee9; 
-              font-size: 35pt;  
-              transform: rotate(25deg); 
-          }
-          .tag4 { 
-              color: #e7503c; 
-              font-size: 30pt; 
-              transform: rotate(44deg); 
-          }
-          .tag5 { 
-              color: #2a48d0; 
-              font-size: 50pt;  
-              transform: rotate(30deg); 
-          }
-          .tag6 { 
-              color: #a823a8; 
-              font-size: 40pt; 
-              transform: rotate(-30deg); 
-          }
-          .tag7 { 
-              color: #2cccf4; 
-              font-size: 60pt;  
-              transform: rotate(80deg); 
-          }
-          .tag8 { 
-              color: #15fcc6; 
-              font-size: 20pt;  
-              transform: rotate(30deg); 
-          }
-          .tag9 { 
-              color: #ecf500; 
-              font-size: 100pt;  
-              transform: rotate(30deg); 
-          }
-          .tag10 { 
-              color: #1fd328; 
-              font-size: 30pt;  
-              transform: rotate(10deg); 
-          }
-          .tag11 { 
-              color: #663e85; 
-              font-size: 35pt;  
-              transform: rotate(-5deg); 
-          }
-          .tag12 { 
-              color: #ff0a0a; 
-              font-size: 25pt;  
-              transform: rotate(25deg); 
-          }
-          .tag13 { 
-              color: #fc0061; 
-              font-size: 15pt;  
-              transform: rotate(45deg); 
-          }
-          .tag14 { 
-              color: #623970; 
-              font-size: 36pt;  
-              transform: rotate(50deg); 
-          }
-          .tag15 { 
-              color: #9bce11; 
-              font-size: 40pt;  
-              transform: rotate(16deg); 
-          }
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Облако тегов</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../favicon-32x32.png">
+    <link rel="icon" href="../favicon-16x16.png">
+    <style>
+        main {
+            display: flex;
+            justify-content: center;
+            font-family:'Times New Roman';
+        }
+
+        .cloud {
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            top: 40px;
+            width: 80%;
+            height: 70px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            margin: 20px;
+            transition: 0.5s;
+            cursor: pointer;
+        } 
+        .tag:hover {
+            transform: scale(2.1);
+            text-shadow: 5px 5px 5px rgba(48, 13, 203, 0.5);
+            z-index: 10;
+        }
+
+        @keyframes float1 {
+      0% { transform: translate(0, 0) rotate(0deg); }
+      50% { transform: translate(10px, 15px) rotate(5deg); }
+      100% { transform: translate(0, 0) rotate(0deg); }
+    }
+        .tag1 { 
+            color: #0af816; 
+            font-size: 10pt; 
+            transform: rotate(-70deg); 
+            animation: float1 5s ease-in-out infinite alternate;
+        }
+
+        @keyframes float2 {
+      0% { transform: translate(0, 0) rotate(0deg); }
+      50% { transform: translate(-15px, -10px) rotate(-7deg); }
+      100% { transform: translate(0, 0) rotate(0deg); }
+    }
+
+        .tag2 { 
+            color: #106d27; 
+            font-size: 30pt;  
+            transform: rotate(10deg); 
+            animation: float2 7s ease-in-out infinite alternate;
+
+        }
+
+        @keyframes float3 {
+      0% { transform: translate(0, 0) rotate(0deg); }
+      50% { transform: translate(20px, -5px) rotate(3deg); }
+      100% { transform: translate(0, 0) rotate(0deg); }
+    }
+
+        .tag3 { 
+            color: #da0ee9; 
+            font-size: 35pt;  
+            transform: rotate(25deg); 
+            animation: float3 6s ease-in-out infinite alternate;
+        }
+
+        @keyframes float4 {
+      0% { transform: translate(0, 0) rotate(0deg); }
+      50% { transform: translate(-10px, 10px) rotate(-4deg); }
+      100% { transform: translate(0, 0) rotate(0deg); }
+    }
+        .tag4 { 
+            color: #e7503c; 
+            font-size: 30pt; 
+            transform: rotate(44deg); 
+            animation: float4 8s ease-in-out infinite alternate;
+        }
+
+        @keyframes float5 {
+      0% { transform: translate(0, 0) rotate(0deg); }
+      50% { transform: translate(15px, 20px) rotate(6deg); }
+      100% { transform: translate(0, 0) rotate(0deg); }
+    }
+
+        .tag5 { 
+            color: #2a48d0; 
+            font-size: 50pt;  
+            transform: rotate(30deg); 
+            animation: float5 9s ease-in-out infinite alternate;
+        }
+
+        @keyframes float6 {
+      0% { transform: translate(0, 0) rotate(0deg); }
+      50% { transform: translate(-20px, -15px) rotate(-5deg); }
+      100% { transform: translate(0, 0) rotate(0deg); }
+    }
+    
+        .tag6 { 
+            color: #a823a8; 
+            font-size: 40pt; 
+            transform: rotate(-30deg); 
+            animation: float6 7s ease-in-out infinite alternate;
+        }
+
+        @keyframes float7 {
+      0% { transform: translate(0, 0) rotate(0deg); }
+      50% { transform: translate(10px, 5px) rotate(2deg); }
+      100% { transform: translate(0, 0) rotate(0deg); }
+    }
+
+        .tag7 { 
+            color: #2cccf4; 
+            font-size: 60pt;  
+            transform: rotate(80deg); 
+            animation: float7 6s ease-in-out infinite alternate;
+        }
+
+        @keyframes float8 {
+      0% { transform: translate(0, 0) rotate(0deg); }
+      50% { transform: translate(-15px, -20px) rotate(-4deg); }
+      100% { transform: translate(0, 0) rotate(0deg); }
+    }
+
+        .tag8 { 
+            color: #15fcc6; 
+            font-size: 20pt;  
+            transform: rotate(30deg); 
+            animation: float8 8s ease-in-out infinite alternate;
+        }
+
+        @keyframes float9 {
+      0% { transform: translate(0, 0) rotate(0deg); }
+      50% { transform: translate(20px, 10px) rotate(7deg); }
+      100% { transform: translate(0, 0) rotate(0deg); }
+    }
+
+        .tag9 { 
+            color: #ecf500; 
+            font-size: 100pt;  
+            transform: rotate(30deg); 
+            animation: float9 9s ease-in-out infinite alternate;
+        }
+
+        @keyframes float10 {
+      0% { transform: translate(0, 0) rotate(0deg); }
+      50% { transform: translate(-10px, -5px) rotate(-1deg); }
+      100% { transform: translate(0, 0) rotate(0deg); }
+    }
+
+        .tag10 { 
+            color: #1fd328; 
+            font-size: 30pt;  
+            transform: rotate(10deg); 
+            animation: float10 7s ease-in-out infinite alternate;
+        }
+
+        @keyframes float11 {
+      0% { transform: translate(0, 0) rotate(0deg); }
+      50% { transform: translate(15px, 15px) rotate(8deg); }
+      100% { transform: translate(0, 0) rotate(0deg); }
+    }
+
+        .tag11 { 
+            color: #663e85; 
+            font-size: 35pt;  
+            transform: rotate(-5deg); 
+            animation: float11 6s ease-in-out infinite alternate;
+        }
+
+        @keyframes float12 {
+      0% { transform: translate(0, 0) rotate(0deg); }
+      50% { transform: translate(-20px, -10px) rotate(-5deg); }
+      100% { transform: translate(0, 0) rotate(0deg); }
+    }
+
+        .tag12 { 
+            color: #ff0a0a; 
+            font-size: 25pt;  
+            transform: rotate(25deg); 
+            animation: float12 8s ease-in-out infinite alternate;
+        }
+
+        @keyframes float13 {
+      0% { transform: translate(0, 0) rotate(0deg); }
+      50% { transform: translate(10px, -15px) rotate(3deg); }
+      100% { transform: translate(0, 0) rotate(0deg); }
+    }
+
+        .tag13 { 
+            color: #fc0061; 
+            font-size: 15pt;  
+            transform: rotate(45deg);
+            animation: float13 9s ease-in-out infinite alternate;
+        }
+
+        @keyframes float14 {
+      0% { transform: translate(0, 0) rotate(0deg); }
+      50% { transform: translate(-15px, 20px) rotate(-2deg); }
+      100% { transform: translate(0, 0) rotate(0deg); }
+    }
+
+        .tag14 { 
+            color: #623970; 
+            font-size: 36pt;  
+            transform: rotate(50deg); 
+            animation: float14 7s ease-in-out infinite alternate;
+        }
+
+        @keyframes float15 {
+      0% { transform: translate(0, 0) rotate(0deg); }
+      50% { transform: translate(20px, -10px) rotate(6deg); }
+      100% { transform: translate(0, 0) rotate(0deg); }
+    }
+
+        .tag15 { 
+            color: #9bce11; 
+            font-size: 40pt;  
+            transform: rotate(16deg); 
+            animation: float15 6s ease-in-out infinite alternate;
+        }
       </style>
   </head>
   <body>
@@ -145,7 +257,6 @@
               <div class="tag tag15">Initial</div>
           </div>
       </main>
-  
       <footer>
              &copy; Анастасия Агафонова, ФБИ-32, 2 курс, 2025
       </footer>
