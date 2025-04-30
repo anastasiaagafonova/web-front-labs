@@ -90,6 +90,49 @@
             let result = a / b;
             alert("Отношение " + a + " / " + b + " равно " + result);
         } 
+
+        function showLev() {
+            let inputA = document.getElementById('numberA')
+            let inputB = document.getElementById('numberB')
+
+            let a = parseInt(inputA.value);
+            let b = parseInt(inputB.value);
+            if(a == 0 && b == 0){
+                alert('Неопределённость')
+                inputB.focus();
+                inputB.select();
+                inputB.style.color = 'red';
+                inputB.style.borderColor = 'red';
+                return;
+            }
+
+            if (isNaN(a) || isNaN(b)) {
+                alert("Ошибка: Пожалуйста, введите корректные числа.");
+                inputB.focus();
+                inputB.select();
+                inputB.style.color = 'red';
+                inputB.style.borderColor = 'red';
+                return; 
+            }
+
+            if(isNaN(b)) {
+                alert('Введите числовое значение во второе поле')
+                inputB.focus();
+                inputB.select();
+                inputB.style.color = 'red';
+                inputB.style.borderColor = 'red';
+                return;
+            }
+
+            inputB.style.color = '';
+            inputB.style.borderColor = '';
+
+            inputA.style.color = '';
+            inputA.style.borderColor = '';
+
+            let result = Math.pow(a, b);
+            alert("Возведение в степень:" + result);
+        } 
     </script>
     <style>
         .message {
@@ -120,6 +163,7 @@
         <div class="message" onclick="showDiff()">Найти разность чисел</div>
         <div class="message" onclick="showMult()">Найти произведение чисел</div>
         <div class="message" onclick="showDiv()">Найти отношение чисел</div>
+        <div class="message" onclick="showLev()">Возведение в степень</div>
         <div class="message" onclick="showAuthor()">Узнать, кто автор страницы</div>
     </main>
     <footer ondblclick="showFoot()">
