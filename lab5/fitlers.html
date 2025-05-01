@@ -36,14 +36,41 @@
     </style>
 
     <script>
-        function applyBlur() {
-            const blurValue = document.getElementById("blurValue").value;
-            const blurValueDisplay = document.getElementById("blurValueDisplay");
-            const image = document.getElementById("blurredImage");
+         function applyFilters() {
+        const image = document.getElementById("blurredImage");
 
-            image.style.filter = `blur(${blurValue}px)`;
-            blurValueDisplay.textContent = blurValue + "px";
-        }
+        // Получаем значения с ползунков
+        const blurValue = document.getElementById("blurValue").value;
+        const brightnessValue = document.getElementById("brightnessValue").value;
+        const contrastValue = document.getElementById("contrastValue").value;
+        const grayscaleValue = document.getElementById("grayscaleValue").value;
+        const hueRotateValue = document.getElementById("hueRotateValue").value;
+        const invertValue = document.getElementById("invertValue").value;
+        const saturateValue = document.getElementById("saturateValue").value;
+        const sepiaValue = document.getElementById("sepiaValue").value;
+
+        // Формируем строку фильтров
+        let filterString = `blur(${blurValue}px) 
+                            brightness(${brightnessValue}%) 
+                            contrast(${contrastValue}%) 
+                            grayscale(${grayscaleValue}%) 
+                            hue-rotate(${hueRotateValue}deg) 
+                            invert(${invertValue}%) 
+                            saturate(${saturateValue}%) 
+                            sepia(${sepiaValue}%)`;
+
+        image.style.filter = filterString;
+
+        // Обновляем отображение значений
+        document.getElementById("blurValueDisplay").textContent = blurValue + "px";
+        document.getElementById("brightnessValueDisplay").textContent = brightnessValue + "%";
+        document.getElementById("contrastValueDisplay").textContent = contrastValue + "%";
+        document.getElementById("grayscaleValueDisplay").textContent = grayscaleValue + "%";
+        document.getElementById("hueRotateValueDisplay").textContent = hueRotateValue + "deg";
+        document.getElementById("invertValueDisplay").textContent = invertValue + "%";
+        document.getElementById("saturateValueDisplay").textContent = saturateValue + "%";
+        document.getElementById("sepiaValueDisplay").textContent = sepiaValue + "%";
+    }
     </script>
 </head>
 <body>
@@ -52,14 +79,59 @@
                 <hr>
     </header>
     <main>
-        <div class="slider-container">
-            <input type="range" id="blurValue" min="0" max="20" value="0" onchange="applyBlur()">
-            <span id="blurValueDisplay">0px</span>
-        </div>
-
-        <div id="imageContainer">
+        <div class="controls-container">
+            <div class="slider-container">
+              <label for="blurValue">Размытие (blur):</label>
+              <input type="range" id="blurValue" min="0" max="20" value="0" onchange="applyFilters()">
+              <span id="blurValueDisplay">0px</span>
+            </div>
+        
+            <div class="slider-container">
+              <label for="brightnessValue">Яркость (brightness):</label>
+              <input type="range" id="brightnessValue" min="0" max="500" value="100" onchange="applyFilters()">
+              <span id="brightnessValueDisplay">100%</span>
+            </div>
+        
+            <div class="slider-container">
+              <label for="contrastValue">Контраст (contrast):</label>
+              <input type="range" id="contrastValue" min="0" max="500" value="100" onchange="applyFilters()">
+              <span id="contrastValueDisplay">100%</span>
+            </div>
+        
+            <div class="slider-container">
+              <label for="grayscaleValue">Оттенки серого (grayscale):</label>
+              <input type="range" id="grayscaleValue" min="0" max="100" value="0" onchange="applyFilters()">
+              <span id="grayscaleValueDisplay">0%</span>
+            </div>
+        
+            <div class="slider-container">
+              <label for="hueRotateValue">Оттенок (hue-rotate):</label>
+              <input type="range" id="hueRotateValue" min="0" max="360" value="0" onchange="applyFilters()">
+              <span id="hueRotateValueDisplay">0%</span>
+            </div>
+        
+            <div class="slider-container">
+              <label for="invertValue">Инверсия (invert):</label>
+              <input type="range" id="invertValue" min="0" max="100" value="0" onchange="applyFilters()">
+              <span id="invertValueDisplay">0%</span>
+            </div>
+        
+            <div class="slider-container">
+              <label for="saturateValue">Насыщенность (saturate):</label>
+              <input type="range" id="saturateValue" min="0" max="500" value="100" onchange="applyFilters()">
+              <span id="saturateValueDisplay">100%</span>
+            </div>
+        
+            <div class="slider-container">
+              <label for="sepiaValue">Сепия (sepia):</label>
+              <input type="range" id="sepiaValue" min="0" max="100" value="0" onchange="applyFilters()">
+              <span id="sepiaValueDisplay">0%</span>
+            </div>
+          </div>
+        
+          <div id="imageContainer">
             <img src="i.webp" alt="Пример картинки" id="blurredImage">
-        </div>
+          </div>
     </main>
     <footer>
         &copy; Анастасия Агафонова, ФБИ-32, 2 курс, 2025
