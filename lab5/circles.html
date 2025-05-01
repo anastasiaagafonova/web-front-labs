@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Круги</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../favicon-32x32.png">
+    <link rel="icon" href="../favicon-16x16.png">
+    <!DOCTYPE html>
+    <style>
+        .circle {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            color: white;
+            transition: all 0.5s ease; /* Анимация для размеров и прозрачности */
+            cursor: pointer; /* Курсор-указатель при наведении */
+        }
+
+        #restoreButton {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        const numCircles = 10;
+        const colors = ['red', 'green', 'blue', 'orange', 'purple', 'pink', 'cyan', 'yellow', 'brown', 'gray'];
+        let container; // Объявили переменную container, но не инициализируем её здесь
+        let restoreButton; // Объявили переменную restoreButton, но не инициализируем её здесь
+        const circles = []; // Массив для хранения ссылок на круги
+
+        function getRandomPosition() {
+            const maxX = window.innerWidth - 100; // Ширина круга
+            const maxY = window.innerHeight - 100; // Высота круга
+            const x = Math.floor(Math.random() * maxX);
+            const y = Math.floor(Math.random() * maxY);
+            return { x, y };
+        }
+
+        function createCircle(index) {
+            const circle = document.createElement('div');
+            circle.classList.add('circle');
+            circle.textContent = index + 1; // Номера от 1 до 10
+            circle.style.backgroundColor = colors[index % colors.length]; // Циклический выбор цвета
+            const position = getRandomPosition();
+            circle.style.left = position.x + 'px';
+            circle.style.top = position.y + 'px';
+            circle.addEventListener('click', hideCircle); // Добавляем обработчик клика
+            container.appendChild(circle); // Используем container из body
+            circles.push(circle); // Добавляем круг в массив
+        }
+
+        function hideCircle(event) {
+            const circle = event.target;
+            circle.style.width = '0px';
+            circle.style.height = '0px';
+            circle.style.opacity = '0';  // Скрываем полностью
+            circle.style.pointerEvents = 'none'; //  Убираем возможность клика по исчезающему кругу
+        }
+
+        function restoreCircles() {
+            circles.forEach((circle, index) => {
+                circle.style.width = '100px';  // Возвращаем начальные размеры
+                circle.style.height = '100px';
+                circle.style.opacity = '1';   // Возвращаем видимость
+                circle.style.pointerEvents = 'auto';  // Возвращаем возможность клика
+            });
+        }
+
+            document.addEventListener('DOMContentLoaded', function() {
+            container = document.getElementById('circlesContainer');
+            restoreButton = document.getElementById('restoreButton');
+
+            for (let i = 0; i < numCircles; i++) {
+            createCircle(i);
+            }
+            restoreButton.addEventListener('click', restoreCircles);
+        });
+    </script>
+</head>
+ <body>
+    <header>
+        НГТУ, ФБ, Лабораторная работа 5
+                <hr>
+    </header>
+    <main>
+        <div id="circlesContainer"></div>
+        <button id="restoreButton">Восстановить круги</button>
+    </main>
+    <footer>
+        &copy; Анастасия Агафонова, ФБИ-32, 2 курс, 2025
+    </footer>
+    </body>
+</html>
