@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Размытие</title>
+    <title>Фильтры</title>
     <link rel="stylesheet" href="../main.css">
     <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
     <link rel="icon" href="../favicon-32x32.png">
@@ -39,7 +39,6 @@
          function applyFilters() {
         const image = document.getElementById("blurredImage");
 
-        // Получаем значения с ползунков
         const blurValue = document.getElementById("blurValue").value;
         const brightnessValue = document.getElementById("brightnessValue").value;
         const contrastValue = document.getElementById("contrastValue").value;
@@ -49,7 +48,6 @@
         const saturateValue = document.getElementById("saturateValue").value;
         const sepiaValue = document.getElementById("sepiaValue").value;
 
-        // Формируем строку фильтров
         let filterString = `blur(${blurValue}px) 
                             brightness(${brightnessValue}%) 
                             contrast(${contrastValue}%) 
@@ -61,7 +59,6 @@
 
         image.style.filter = filterString;
 
-        // Обновляем отображение значений
         document.getElementById("blurValueDisplay").textContent = blurValue + "px";
         document.getElementById("brightnessValueDisplay").textContent = brightnessValue + "%";
         document.getElementById("contrastValueDisplay").textContent = contrastValue + "%";
