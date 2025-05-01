@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Обработка событий</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../favicon-32x32.png">
+    <link rel="icon" href="../favicon-16x16.png">
+    <style>
+        #Block {
+          width: 200px;
+          height: 150px;
+          border: 2px solid #333;
+          background-color: #f0f0f0;
+          cursor: crosshair;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-family: sans-serif;
+          font-size: 14px;
+          text-align: center;
+        }
+      </style>
+      <script>
+      function showCoords(event) {
+        let x = event.offsetX;
+        let y = event.offsetY;
+        let div = document.getElementById('Block');
+        let message = '';
+    
+        if (event.ctrlKey) {
+          message += "Нажата Ctrl, ";
+          div.style.color = 'red';
+        } else {
+          div.style.color = 'black';
+        }
+    
+        if (event.altKey) {
+          message += "Нажата Alt, ";
+          div.style.backgroundColor = '#e0e0e0'; 
+        } else {
+        div.style.backgroundColor = '#f0f0f0'; 
+        }
+    
+        if (event.shiftKey) {
+          message += "Нажата Shift, ";
+          div.style.borderColor = 'blue';
+        } else {
+          div.style.borderColor = '#333';
+        }
+    
+        div.innerHTML = `<b>x</b> = ${x}px <b>y</b> = ${y}px<br>${message.slice(0, -2)}`; // Убираем ", " в конце
+      }
+    </script>
+ </head>
+    <body>
+        <header>
+            НГТУ, ФБ, Лабораторная работа 5
+            <hr>
+        </header>
+        <main>
+        <div id="Block" onmousemove="showCoords(event)"></div>
+        </main>
+        <footer>
+        &copy; Анастасия Агафонова, ФБИ-32, 2 курс, 2025
+        </footer>
+    </body>
+</html>
