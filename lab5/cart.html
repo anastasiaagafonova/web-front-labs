@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Корзина товаров</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../favicon-32x32.png">
+    <link rel="icon" href="../favicon-16x16.png">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #cfd5e3;
+        }
+        h1 {
+            color: #333;
+        }
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+        .cart-item span {
+            flex: 1;
+        }
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+        }
+        .quantity-controls button {
+            width: 30px;
+            height: 30px;
+            font-size: 16px;
+            margin: 0 5px;
+            cursor: pointer;
+        }
+        .quantity-controls input {
+            width: 40px;
+            text-align: center;
+        }
+        .total {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+            text-align: right;
+            margin: 20px;
+        }
+        .clearall {
+            margin-top: 5px;
+            padding: 5px 20px;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            cursor: pointer;
+            float: right; 
+            margin: 10px;
+        }
+    </style>
+     <script>
+        const prices = {
+            item1: 100, // Яблоки
+            item2: 80,  // Груши
+            item3: 150, // Апельсины
+            item4: 300  // Дыни
+        };
+
+        function updateQuantity(itemId, change) {
+            const input = document.getElementById(itemId);
+            let quantity = parseInt(input.value);
+            quantity += change;
+            if (quantity < 0) quantity = 0;
+            input.value = quantity;
+            calculateTotal();
+        }
+
+        function calculateTotal() {
+            let total = 0;
+            for (let itemId in prices) {
+                const quantity = parseInt(document.getElementById(itemId).value);
+                total += quantity * prices[itemId];
+            }
+            document.getElementById('total-price').textContent = total;
+        }
+        function clearAll() {
+        for (let itemId in prices) {
+            const input = document.getElementById(itemId);
+            input.value = 0;
+        }
+        calculateTotal();
+        }
+
+        calculateTotal();
+
+    </script>
+</head>
+<body>
+    <header>
+        НГТУ, ФБ, Лабораторная работа 5
+    </header>
+    <h1>КОРЗИНА ТОВАРОВ</h1>
+    <div id="cart">
+        <div class="cart-item">
+            <span>ЯБЛОКИ (100р/шт):</span>
+            <div class="quantity-controls">
+                <button onclick="updateQuantity('item1', -1)">-</button>
+                <input type="text" id="item1" value="3" readonly >
+                <button onclick="updateQuantity('item1', 1)">+</button>
+            </div>
+        </div>
+        <div class="cart-item">
+            <span>ГРУШИ (80р/шт):</span>
+            <div class="quantity-controls">
+                <button onclick="updateQuantity('item2', -1)">-</button>
+                <input type="text" id="item2" value="8" readonly>
+                <button onclick="updateQuantity('item2', 1)">+</button>
+            </div>
+        </div>
+        <div class="cart-item">
+            <span>АПЕЛЬСИНЫ (150р/шт):</span>
+            <div class="quantity-controls">
+                <button onclick="updateQuantity('item3', -1)">-</button>
+                <input type="text" id="item3" value="4" readonly>
+                <button onclick="updateQuantity('item3', 1)">+</button>
+            </div>
+        </div>
+        <div class="cart-item">
+            <span>ДЫНИ (300р/шт):</span>
+            <div class="quantity-controls">
+                <button onclick="updateQuantity('item4', -1)">-</button>
+                <input type="text" id="item4" value="1" readonly>
+                <button onclick="updateQuantity('item4', 1)">+</button>
+            </div>
+        </div>
+    </div>
+    <div class="total">
+        <span>Общая цена: <span id="total-price">1840</span> ₽</span>
+    </div>
+    <div>
+        <button class="clearall" onclick="clearAll()">Очистить все</button>
+    </div>
+    <footer>
+        &copy; Анастасия Агафонова, ФБИ-32, 2 курс, 2025
+    </footer>
+</body>
+</html>
