@@ -1,0 +1,121 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    padding-top: 200px; /*  Подстройте значение под новую высоту header */
+  }
+  
+  header {
+    background-color: #353e47;
+    color: white;
+    padding: 60px 20px; /* Увеличиваем отступ для расширения */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+  }
+  
+  .header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Распределяем логотип и слоган */
+    max-width: 1200px; /* Ограничиваем ширину */
+    margin: 0 auto; /* Центрируем по горизонтали */
+  
+  }
+  
+  .logo {
+    width: 33.33%; /* Сдвигаем логотип на 1/3 влево */
+    text-align: left;
+    padding-left: 20px; /* Можно добавить дополнительный отступ слева */
+  }
+  
+  .logo h1 {
+    margin: 0;
+    font-size: 24px;
+  }
+  
+  .slogan {
+    width: 66.66%; /* Чтобы слоган занимал остаток места */
+    text-align: center; /* Центрируем текст слогана */
+  }
+  
+  .slogan p {
+    font-style: italic; /* Курсивный шрифт */
+    font-size: 5em;      /* Увеличиваем размер шрифта в 5 раз */
+    margin: 0;             /* Убираем отступы */
+  }
+  
+  nav {
+    background-color: #9a9c9d;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    position: fixed;
+    top: 200px; /* Подстраиваем под новую высоту header (примерно, проверьте!) */
+    left: 0;
+    width: 100%;
+    z-index: 99;
+  }
+  
+  nav a {
+    color: white;
+    padding: 14px 20px;
+    text-decoration: none;
+  }
+  
+  nav a:hover {
+    background-color: #0074D9;
+  }
+  
+  section {
+    padding: 40px;
+  }
+  
+  .about,
+  .services,
+  .news,
+  .contacts {
+    background-color: #f4f4f4;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 1000px;
+  }
+  
+  footer {
+    background-color: #353e47;
+    color: white;
+    text-align: center;
+    padding: 15px;
+  }
+  
+  .news-item {
+    margin-bottom: 15px;
+  }
+  
+  .news-item h3 {
+    margin: 0 0 5px 0;
+  }
+  
+  .news-item p {
+    margin: 0;
+  }
+  
+  .photo {
+    display: block;
+    overflow: hidden;
+    margin: 0 auto;
+  }
+  
+  .photo-content {
+    display: flex;
+    /* Используем flexbox */
+    justify-content: space-between;
+    /* Располагаем логотип слева, меню справа */
+    align-items: center;
+    /* Выравниваем по вертикали */
+    margin: 0 auto;
+    /* Центрируем контент (по желанию) */
+  }
