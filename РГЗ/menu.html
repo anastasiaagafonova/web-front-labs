@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>ПАО «Россети Ленэнерго»</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+       body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  padding-top: 200px; /*  Подстройте значение! */
+}
+
+header {
+  background-color: #353e47;
+  color: white;
+  padding: 60px 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.logo {
+  width: 33.33%;
+  text-align: left;
+  padding-left: 40px; /* Увеличиваем отступ для сдвига вправо */
+}
+
+.logo h1 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.slogan {
+  width: 66.66%;
+  text-align: left;
+  padding-left: calc(33.33% / 2); /*  Убрали + 10px */
+}
+
+.slogan p {
+  font-style: italic;
+  font-size: 5em;
+  margin: 0;
+}
+
+nav {
+  background-color: #9a9c9d;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  position: fixed;
+  top: 120px;  /* Подстраиваем под высоту header. 60 +60 =120*/
+  left: 0;
+  width: 100%;
+  z-index: 99;
+}
+
+nav a {
+  color: white;
+  padding: 14px 20px;
+  text-decoration: none;
+}
+
+nav a:hover {
+  background-color: #0074D9;
+}
+
+section {
+  padding: 40px;
+}
+
+.about,
+.services,
+.news,
+.contacts {
+  background-color: #f4f4f4;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 1000px;
+}
+
+footer {
+  background-color: #353e47;
+  color: white;
+  text-align: center;
+  padding: 15px;
+}
+
+.news-item {
+  margin-bottom: 15px;
+}
+
+.news-item h3 {
+  margin: 0 0 5px 0;
+}
+
+.news-item p {
+  margin: 0;
+}
+
+.photo {
+  display: block;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.photo-content {
+  display: flex;
+  /* Используем flexbox */
+  justify-content: space-between;
+  /* Располагаем логотип слева, меню справа */
+  align-items: center;
+  /* Выравниваем по вертикали */
+  margin: 0 auto;
+  /* Центрируем контент (по желанию) */
+}
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="photo-content">
+    <img src="logonew.png" class="photo">
+    <p class="slogan"><i>Энергия, соединяющая будущее</i></p>
+    </div>
+</header>
+
+<nav>
+    <a href="#about">О компании</a>
+    <a href="#services">Новости</a>
+    <a href="#news">Курс валют</a>
+    <a href="#contacts">Контактные данные</a>
+    <a href="#contacts">Видео</a>
+</nav>
+
+<section id="about" class="about">
+    <h2>О компании</h2>
+    <p>ПАО «Россети Ленэнерго» — одна из крупнейших распределительно-сетевых компаний России, обеспечивающая надежное электроснабжение Санкт-Петербурга и Ленинградской области. Основана в 1886 году как «Общество электрического освещения 1886 года». С 30 июля 2020 года носит текущее название.</p>
+</section>
+
+<section id="services" class="services">
+    <h2>Наши услуги</h2>
+    <ul>
+        <li>Подключение к электрическим сетям</li>
+        <li>Передача электрической энергии</li>
+        <li>Техническое обслуживание и ремонт сетей</li>
+        <li>Консультации по вопросам электроснабжения</li>
+    </ul>
+</section>
+
+<section id="news" class="news">
+    <h2>Новости</h2>
+    <div class="news-item">
+        <h3>Модернизация подстанции «Промзона-1»</h3>
+        <p>Специалисты филиала «Гатчинские электрические сети» установили новые элегазовые выключатели на подстанции 110 кВ «Промзона-1», повысив надежность электроснабжения ряда населенных пунктов.</p>
+    </div>
+    <div class="news-item">
+        <h3>Подключение социально значимых объектов</h3>
+        <p>В 2025 году энергетики подключили к сетям 373 социально значимых объекта, включая школы и медицинские учреждения, в Санкт-Петербурге и Ленинградской области.</p>
+    </div>
+    <div class="news-item">
+        <h3>Цифровизация энергетической инфраструктуры</h3>
+        <p>Компания активно внедряет цифровые технологии, включая системы мониторинга трансформаторов и использование беспилотных аппаратов для контроля линий электропередачи.</p>
+    </div>
+</section>
+
+<section id="contacts" class="contacts">
+    <h2>Контакты</h2>
+    <p><strong>Адрес:</strong> 197349, г. Санкт-Петербург, ул. Гаккелевская, д. 21, литера А</p>
+    <p><strong>Телефон:</strong> 8 (800) 220 0 220</p>
+    <p><strong>Email:</strong> info@lenenergo.ru</p>
+    <p><strong>Личный кабинет клиента:</strong> <a href="https://lkk.lenenergo.ru/" target="_blank">lkk.lenenergo.ru</a></p>
+</section>
+
+<footer>
+    <p>&copy; 2025 ПАО «Россети Ленэнерго». Все права защищены.</p>
+</footer>
+
+</body>
