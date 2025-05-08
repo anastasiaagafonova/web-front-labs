@@ -2,190 +2,220 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>ПАО «Россети Ленэнерго»</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>О компании - Россети Ленэнерго</title>
     <style>
-       body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  padding-top: 200px; /*  Подстройте значение! */
-}
+        body {
+            margin: 0;
+            font-family: 'Roboto', Arial, sans-serif;
+            background-color: #f5f6f5;
+            color: #333;
+            line-height: 1.6;
+            }
 
-header {
-  background-color: #353e47;
-  color: white;
-  padding: 60px 20px;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 100;
-}
+            header {
+            background-color: #2f353b; /* Темно-серый цвет, как на сайте */
+            color: #ffffff;
+            padding: 10px 20px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
 
-.header-content {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  max-width: 1200px;
-  margin: 0 auto;
-}
+            .logo {
+            max-width: 150px;
+            }
 
-.logo {
-  width: 33.33%;
-  text-align: left;
-  padding-left: 40px; /* Увеличиваем отступ для сдвига вправо */
-}
+            nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            }
 
-.logo h1 {
-  margin: 0;
-  font-size: 24px;
-}
+            nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            }
 
-.slogan {
-  width: 66.66%;
-  text-align: left;
-  padding-left: calc(33.33% / 2); /*  Убрали + 10px */
-}
+            nav ul li {
+            margin-left: 20px;
+            }
 
-.slogan p {
-  font-style: italic;
-  font-size: 5em;
-  margin: 0;
-}
+            nav ul li a {
+            color: #ffffff; /* Белый цвет текста меню */
+            text-decoration: none;
+            font-size: 16px;
+            padding: 10px;
+            transition: border 0.3s;
+            }
 
-nav {
-  background-color: #9a9c9d;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  position: fixed;
-  top: 120px;  /* Подстраиваем под высоту header. 60 +60 =120*/
-  left: 0;
-  width: 100%;
-  z-index: 99;
-}
+            nav ul li a:hover {
+            border: 1px solid #cccccc; /* Серая рамка при наведении */
+            border-radius: 4px;
+            }
 
-nav a {
-  color: white;
-  padding: 14px 20px;
-  text-decoration: none;
-}
+            nav ul li a.active {
+            color: #ffffff;
+            font-weight: bold;
+            }
 
-nav a:hover {
-  background-color: #0074D9;
-}
+            .container {
+            max-width: 1200px;
+            margin: 80px auto 20px;
+            padding: 20px;
+            }
 
-section {
-  padding: 40px;
-}
+            h1,
+            h2,
+            h3 {
+            color: #2f353b; /* Темно-серый цвет заголовков, как header */
+            }
 
-.about,
-.services,
-.news,
-.contacts {
-  background-color: #f4f4f4;
-  margin: 20px auto;
-  padding: 20px;
-  border-radius: 10px;
-  max-width: 1000px;
-}
+            h1 {
+            font-size: 32px;
+            text-align: center;
+            margin-bottom: 20px;
+            }
 
-footer {
-  background-color: #353e47;
-  color: white;
-  text-align: center;
-  padding: 15px;
-}
+            h2 {
+            font-size: 24px;
+            margin-top: 20px;
+            }
 
-.news-item {
-  margin-bottom: 15px;
-}
+            p {
+            font-size: 16px;
+            margin-bottom: 5px;
+            }
 
-.news-item h3 {
-  margin: 0 0 5px 0;
-}
+            .highlight {
+            font-weight: bold;
+            font-style: italic;
+            text-decoration: underline;
+            }
 
-.news-item p {
-  margin: 0;
-}
+            .image {
+            max-width: 50%;
+            height: auto;
+            display: block;
+            margin: auto;
+            padding: 10px;
+            }
 
-.photo {
-  display: block;
-  overflow: hidden;
-  margin: 0 auto;
-}
+            .image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px; /*  Закругляем края изображения */
+            display: block;
+            margin: 0 auto;
+            }
 
-.photo-content {
-  display: flex;
-  /* Используем flexbox */
-  justify-content: space-between;
-  /* Располагаем логотип слева, меню справа */
-  align-items: center;
-  /* Выравниваем по вертикали */
-  margin: 0 auto;
-  /* Центрируем контент (по желанию) */
-}
+            .to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #2f353b; /* Темно-серый, как header */
+            color: #ffffff;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 24px;
+            cursor: pointer;
+            display: none;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s;
+            }
+
+            .to-top:hover {
+            background-color: #3f454b; /* Чуть светлее при наведении */
+            }
+
+            .section {
+            min-height: 50vh;
+            padding: 10px 0;
+            margin: 2px;
+            /* Небольшой отступ после раздела */
+            }
+        footer {
+            background-color: #2f353b; /* Темно-серый цвет, как header */
+            color: #ffffff;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+        .logo1 {
+            width: 100%;
+        }
     </style>
+    <script>
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        window.addEventListener('scroll', () => {
+            const toTopButton = document.querySelector('.to-top');
+            if (window.scrollY > 300) {
+                toTopButton.style.display = 'block';
+            } else {
+                toTopButton.style.display = 'none';
+            }
+        });
+    </script>
 </head>
 <body>
+    <header>
+        <nav>
+            <img src="logonew.png" class="logo">
+            <ul>
+                <li><a href="index.html" class="active">О компании</a></li>
+                <li><a href="news.html">Новости</a></li>
+                <li><a href="currency.html">Курс валют</a></li>
+                <li><a href="contacts.html">Контакты</a></li>
+                <li><a href="video.html">Видео</a></li>
+            </ul>
+        </nav>
+    </header>
 
-<header>
-    <div class="photo-content">
-    <img src="logonew.png" class="photo">
-    <p class="slogan"><i>Энергия, соединяющая будущее</i></p>
+    <div class="container">
+        <h1>О компании Россети Ленэнерго</h1>
+        <img src="1.jpg" class="logo1">
+
+        <div class="section">
+            <h2>Общая информация</h2>
+            <p>ПАО «<span class="highlight">Россети Ленэнерго</span>» (тикер: LSNG) – одна из крупнейших электросетевых компаний России, обеспечивающая надежное энергоснабжение <a href="https://www.spb.ru/" target="_blank">Санкт-Петербурга</a> и Ленинградской области. Компания была основана в <strong>2005 году</strong> в результате реорганизации ОАО «Ленэнерго», однако история энергоснабжения региона начинается с конца XIX века.</p>
+            <p>Основные направления деятельности включают передачу электроэнергии, подключение потребителей к электрическим сетям и обслуживание электросетевой инфраструктуры. <em>Россети Ленэнерго</em> обслуживает более <strong>2,5 миллионов</strong> жителей и тысячи предприятий региона.</p>
+            <img src="2.webp" class="image">
+        </div>
+
+        <div class="section">
+            <h2>История компании</h2>
+            <p>История <a href="https://rosseti-lenenergo.ru/about/history/" target="_blank">Россети Ленэнерго</a> берет начало с 1886 года, когда в Санкт-Петербурге была введена в эксплуатацию первая электростанция. В советский период энергосистема региона развивалась под управлением «Ленэнерго».</p>
+            <p>В 2005 году в рамках реформы электроэнергетики было создано ОАО «Ленэнерго», которое в 2015 году вошло в состав ПАО «Россети» и получило название «Россети Ленэнерго». За годы работы компания модернизировала сотни километров линий электропередач, внедрила <span class="highlight">цифровые технологии</span> в управление сетями и реализовала крупные инфраструктурные проекты, такие как обеспечение электроэнергией новых жилых комплексов и промышленных объектов.</p>
+            <img src="3.webp" class="image">
+        </div>
+
+        <div class="section">
+            <h2>Миссия и ценности</h2>
+            <p>Миссия компании – обеспечение <strong>надежного</strong>, <em>безопасного</em> и <u>доступного</u> энергоснабжения для всех потребителей. Россети Ленэнерго стремится к инновациям, устойчивому развитию и повышению качества обслуживания клиентов.</p>
+            <p>Ключевые ценности включают:</p>
+            <ul>
+                <li><b>Надежность</b>: бесперебойное энергоснабжение региона;</li>
+                <li><b>Инновации</b>: внедрение передовых технологий;</li>
+                <li><b>Ответственность</b>: забота об экологии и обществе.</li>
+            </ul>
+            <p>Компания активно участвует в социальных и экологических проектах, таких как <a href="https://rosseti-lenenergo.ru/social/" target="_blank">программы энергосбережения</a> и поддержка местных сообществ.</p>
+            <img src="4.webp" class="image">
+        </div>
     </div>
-</header>
-
-<nav>
-    <a href="#about">О компании</a>
-    <a href="#services">Новости</a>
-    <a href="#news">Курс валют</a>
-    <a href="#contacts">Контактные данные</a>
-    <a href="#contacts">Видео</a>
-</nav>
-
-<section id="about" class="about">
-    <h2>О компании</h2>
-    <p>ПАО «Россети Ленэнерго» — одна из крупнейших распределительно-сетевых компаний России, обеспечивающая надежное электроснабжение Санкт-Петербурга и Ленинградской области. Основана в 1886 году как «Общество электрического освещения 1886 года». С 30 июля 2020 года носит текущее название.</p>
-</section>
-
-<section id="services" class="services">
-    <h2>Наши услуги</h2>
-    <ul>
-        <li>Подключение к электрическим сетям</li>
-        <li>Передача электрической энергии</li>
-        <li>Техническое обслуживание и ремонт сетей</li>
-        <li>Консультации по вопросам электроснабжения</li>
-    </ul>
-</section>
-
-<section id="news" class="news">
-    <h2>Новости</h2>
-    <div class="news-item">
-        <h3>Модернизация подстанции «Промзона-1»</h3>
-        <p>Специалисты филиала «Гатчинские электрические сети» установили новые элегазовые выключатели на подстанции 110 кВ «Промзона-1», повысив надежность электроснабжения ряда населенных пунктов.</p>
-    </div>
-    <div class="news-item">
-        <h3>Подключение социально значимых объектов</h3>
-        <p>В 2025 году энергетики подключили к сетям 373 социально значимых объекта, включая школы и медицинские учреждения, в Санкт-Петербурге и Ленинградской области.</p>
-    </div>
-    <div class="news-item">
-        <h3>Цифровизация энергетической инфраструктуры</h3>
-        <p>Компания активно внедряет цифровые технологии, включая системы мониторинга трансформаторов и использование беспилотных аппаратов для контроля линий электропередачи.</p>
-    </div>
-</section>
-
-<section id="contacts" class="contacts">
-    <h2>Контакты</h2>
-    <p><strong>Адрес:</strong> 197349, г. Санкт-Петербург, ул. Гаккелевская, д. 21, литера А</p>
-    <p><strong>Телефон:</strong> 8 (800) 220 0 220</p>
-    <p><strong>Email:</strong> info@lenenergo.ru</p>
-    <p><strong>Личный кабинет клиента:</strong> <a href="https://lkk.lenenergo.ru/" target="_blank">lkk.lenenergo.ru</a></p>
-</section>
-
-<footer>
-    <p>&copy; 2025 ПАО «Россети Ленэнерго». Все права защищены.</p>
-</footer>
-
+    <button class="to-top" onclick="scrollToTop()">↑</button>
+    <footer>
+        <p>© 2025 ПАО «Россети Ленэнерго». Все права защищены.</p>
+    </footer>
 </body>
+</html>
