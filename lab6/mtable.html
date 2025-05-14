@@ -3,8 +3,11 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Калькулятор умножения</title>
-
+    <title>Таблица умножения</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../favicon-32x32.png">
+    <link rel="icon" href="../favicon-16x16.png">
     <script>
         function showMultipleTable() {
             const multiplyOn = parseInt(document.getElementById('multiplyBy').value);
@@ -35,7 +38,7 @@
             height: 100vh;
             margin: 0;
             display: flex;
-            flex-direction: column; /* Устанавливаем вертикальное направление */
+            flex-direction: column; 
             background-color: #f0f0ff;
             font-family: Arial, sans-serif;
         }
@@ -61,11 +64,11 @@
             padding: 10px;
         }
         main {
-            flex: 1; /* Занимает оставшееся пространство */
+            flex: 1; 
             display: flex;
             justify-content: center;
             align-items: center;
-            flex-direction: column; /* Вертикальное направление для элементов внутри main */
+            flex-direction: column; 
         }
         #mtable {
             border: 1px solid rgb(147, 153, 238);
@@ -92,18 +95,18 @@
             padding: 8px;
             border: 2px solid rgb(166, 166, 235);
             width: auto;
-            margin-bottom: 10px; /* Расстояние между полями ввода */
+            margin-bottom: 10px; 
         }
         
         button {
             padding: 10px;
-            margin: 10px auto 0 auto; /* Центрируем кнопку */
+            margin: 10px auto 0 auto; 
             width: 100px;
             background-color: #383aba;
             color: white;
             border-radius: 4px;
             cursor: pointer;
-            display: block; /* Для центрирования по ширине */
+            display: block; 
         }
         
     </style>
