@@ -1,0 +1,119 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Дополнительное задание</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../Icon/favicon-16x16.png">
+    <link rel="icon" href="../Icon/favicon-32x32.png">
+    <link rel="icon" href="../Icon/favicon.ico">
+    <style>
+        h1 {
+            text-align: center;
+        }
+        #chartContainer {
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-end;
+            height: 250px;
+            border: 1px solid rgb(0, 0, 0);
+            margin-bottom: 30px;
+        }
+
+        .bar {
+            width: 20px;
+            background-color: rgb(7, 9, 126);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        .bar-inner {
+            background-color: rgba(255, 255, 255);
+            width: 100%;
+        }
+
+        .maxTemp, .minTemp {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.8em;
+            color: #000000;
+            font-size: 10px;
+        }
+
+        .maxTemp { top: -20px; }
+        .minTemp { bottom: -20px; }
+
+    </style>
+    <script>
+        let temps = [], highlightedBar = null;
+
+        function generateData() {
+            temps = Array.from({ length: 30 }, () => {
+                const min = Math.floor(Math.random() * 20) + 5; 
+                const max = min + Math.floor(Math.random() * 15);
+                return { min, max };
+            });
+        }
+
+        function drawChart() {
+            const container = document.getElementById('chartContainer');
+            container.innerHTML = '';
+            const maxHeight = Math.max(...temps.map(t => t.max));
+
+            temps.forEach(({ min, max }, i) => {
+                const bar = document.createElement('div');
+                bar.className = 'bar';
+                bar.dataset.index = i;
+                bar.onclick = () => highlightBar(i);
+
+                bar.innerHTML = `
+                    <div class="bar-inner" style="height:${(max - min) / maxHeight * 100}%"></div>
+                    <div class="maxTemp">${max}°C</div>
+                    <div class="minTemp">${min}°C</div>
+                `;
+                bar.style.height = (min / maxHeight * 100) + '%';
+                container.appendChild(bar);
+            });
+        }
+
+        function highlightBar(index) {
+            document.querySelectorAll('.bar').forEach((bar, i) => {
+                bar.style.backgroundColor = i == index ? 'red' : 'rgb(7, 9, 126)';
+            });
+
+            const { min, max } = temps[index];
+            document.getElementById('minTempOutput').textContent = min + '°C';
+            document.getElementById('maxTempOutput').textContent = max + '°C';
+        }
+
+        function init() {
+            generateData();
+            drawChart();
+        }
+    </script>
+</head>
+<body onload="init()">
+    <header>НГТУ, ФБ, Лабораторная работа 6</header>
+    <main>
+        <h1>Температура за месяц</h1>
+        <div id="chartContainer"></div>
+
+        <div id="controls">
+            Номер дня:
+            <input type="number" id="dayInput" min="1" max="30">
+            <button onclick="highlightBar(document.getElementById('dayInput').value - 1)">Найти</button>
+            <p>Минимальная температура: <span id="minTempOutput"></span></p>
+            <p>Максимальная температура: <span id="maxTempOutput"></span></p>
+        </div>
+    </main>
+    <footer>
+        &copy; Агафонова Анастасия, ФБИ-32, 2 курс, 2025
+    </footer>
+</body>
+</html>
