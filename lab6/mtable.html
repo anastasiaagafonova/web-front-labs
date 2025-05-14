@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Калькулятор умножения</title>
+
+    <script>
+        function showMultipleTable() {
+            const multiplyOn = parseInt(document.getElementById('multiplyBy').value);
+            const start = parseInt(document.getElementById('start').value);
+            const end = parseInt(document.getElementById('end').value);
+
+            let tbl = document.getElementById('mtable');
+            tbl.innerHTML = '<h1>Таблица умножения</h1>';
+
+            if (isNaN(multiplyOn) || isNaN(start) || isNaN(end)) {
+                tbl.innerHTML = 'Введите числа';
+                return;
+            }
+
+            if (start > end) {
+                tbl.innerHTML = 'Начальное значение больше конечного. Пожалуйста, исправьте.';
+                return;
+            }
+
+            for(let i = start; i <= end; i++) {
+                let s = `<div class="mtable-item">${i} * ${multiplyOn} = ${i * multiplyOn}</div>`;
+                tbl.innerHTML += s;
+            }
+        }
+    </script>
+    <style>
+        body {
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            flex-direction: column; /* Устанавливаем вертикальное направление */
+            background-color: #f0f0ff;
+            font-family: Arial, sans-serif;
+        }
+        footer {
+            background-color:  rgb(208, 208, 208);
+            color: rgb(3, 3, 3);
+            font-family: Arial;
+            font-size: 14pt;
+            margin: 0px;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            text-align: right;
+        }
+        header {
+            background-color: rgb(208, 208, 208);
+            color: rgb(3, 3, 3);
+            font-family: Arial;
+            font-size: 14pt;
+            margin: 0px;
+            padding: 10px;
+        }
+        main {
+            flex: 1; /* Занимает оставшееся пространство */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column; /* Вертикальное направление для элементов внутри main */
+        }
+        #mtable {
+            border: 1px solid rgb(147, 153, 238);
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 5px 5px 5px rgb(138, 127, 166);
+            margin: 20px;
+            padding: 10px;
+            width: 250px;
+            text-align: center;
+        }
+        .mtable-item {
+            padding: 10px;
+            border-bottom: 1px solid rgb(166, 186, 235);
+        }
+        
+        .inp label {
+            display: inline-block;
+            width: 200px;
+            text-align: left;
+        }
+    
+        .inp input[type="number"] {
+            padding: 8px;
+            border: 2px solid rgb(166, 166, 235);
+            width: auto;
+            margin-bottom: 10px; /* Расстояние между полями ввода */
+        }
+        
+        button {
+            padding: 10px;
+            margin: 10px auto 0 auto; /* Центрируем кнопку */
+            width: 100px;
+            background-color: #383aba;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+            display: block; /* Для центрирования по ширине */
+        }
+        
+    </style>
+</head>
+<body onload="showMultipleTable()">
+    <header>
+        НГТУ, ФБ, Лабораторная работа 6
+    </header>
+    
+    <main>
+        <div id="mtable"></div>
+     
+        <div class="inp">
+            <label for="multiply">Умножить на:</label>
+            <input type="number" id="multiplyBy">
+        </div>
+
+        <div class="inp">
+            <label for="start">Начать с:</label>
+            <input type="number" id="start">
+        </div>
+
+        <div class="inp">
+            <label for="end">Закончить на:</label>
+            <input type="number" id="end">
+        </div>
+
+        <div class="table">
+            <button onclick="showMultipleTable()">Умножить</button>
+        </div>
+    </main>
+
+    <footer>
+        &copy; Анастасия Агафонова, ФБИ-32, 2 курс, 2025
+    </footer>
+</body>
+</html>
