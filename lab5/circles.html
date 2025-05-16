@@ -39,8 +39,8 @@
         const circles = []; 
 
         function getRandomPosition() {
-            const maxX = window.innerWidth - 100; // Ширина круга
-            const maxY = window.innerHeight - 100; // Высота круга
+            const maxX = window.innerWidth - 100; 
+            const maxY = window.innerHeight - 100; 
             const x = Math.floor(Math.random() * maxX);
             const y = Math.floor(Math.random() * maxY);
             return { x, y };
@@ -63,7 +63,7 @@
             const circle = event.target;
             circle.style.width = '0px';
             circle.style.height = '0px';
-            circle.style.opacity = '0';  // Скрываем полностью
+            circle.style.opacity = '0';  
             circle.style.pointerEvents = 'none'; //  Убираем возможность клика по исчезающему кругу
         }
 
