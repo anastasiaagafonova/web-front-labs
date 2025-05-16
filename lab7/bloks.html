@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Добавление блоков</title>
+        <link rel="stylesheet" href="../main.css">
+        <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+        <link rel="icon" href="../favicon-32x32.png">
+        <link rel="icon" href="../favicon-16x16.png">
+        <style>
+            button {
+                background-color: #8216b4;
+                color: white;
+                font-size: 1.1rem;
+                font-weight: 600;
+                border: none;
+                padding: 0.8rem 1.5rem;
+                border-radius: 6px;
+                cursor: pointer;
+                transition: background-color 0.3s ease, box-shadow 0.2s ease;
+                box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4);
+                user-select: none;
+                width: 150px;
+                margin: 5px;
+                
+            }
+            main {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+            }
+            button:hover {
+                background-color: #823b9e;
+                box-shadow: 0 6px 14px rgba(0, 0, 0, 0.6);
+            }
+            .block {
+                width: 150px;
+                background-color: #a86cc0;
+                height: 40px;
+                border-radius: 6px;
+                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+                transition: background-color 0.3s ease;
+                margin: 5px;
+                display: block;
+            }
+        </style>
+        <script>
+             function addNewBlock() {
+                    const newBlock = document.createElement('div');
+                    newBlock.classList.add('block'); // Add a class for styling
+                    document.querySelector('main').appendChild(newBlock);
+                }
+        </script>
+    </head>
+    <body>
+        <header>
+            НГТУ, ФБ, Лабораторная работа 7
+                    <hr>
+        </header>
+        <main>
+            <div>
+                <button onclick="addNewBlock()">Добавить блок</button>
+            </div>
+        </main>
+        <footer>
+            &copy; Анастасия Агафонова, ФБИ-32, 2 курс, 2025
+        </footer>
+    </body>
+</html>
