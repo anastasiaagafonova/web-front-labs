@@ -1,121 +1,140 @@
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    padding-top: 200px; /*  Подстройте значение под новую высоту header */
-  }
-  
-  header {
-    background-color: #353e47;
-    color: white;
-    padding: 60px 20px; /* Увеличиваем отступ для расширения */
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 100;
-  }
-  
-  .header-content {
-    display: flex;
-    align-items: center;
-    justify-content: space-between; /* Распределяем логотип и слоган */
-    max-width: 1200px; /* Ограничиваем ширину */
-    margin: 0 auto; /* Центрируем по горизонтали */
-  
-  }
-  
-  .logo {
-    width: 33.33%; /* Сдвигаем логотип на 1/3 влево */
-    text-align: left;
-    padding-left: 20px; /* Можно добавить дополнительный отступ слева */
-  }
-  
-  .logo h1 {
-    margin: 0;
-    font-size: 24px;
-  }
-  
-  .slogan {
-    width: 66.66%; /* Чтобы слоган занимал остаток места */
-    text-align: center; /* Центрируем текст слогана */
-  }
-  
-  .slogan p {
-    font-style: italic; /* Курсивный шрифт */
-    font-size: 5em;      /* Увеличиваем размер шрифта в 5 раз */
-    margin: 0;             /* Убираем отступы */
-  }
-  
-  nav {
-    background-color: #9a9c9d;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    position: fixed;
-    top: 200px; /* Подстраиваем под новую высоту header (примерно, проверьте!) */
-    left: 0;
-    width: 100%;
-    z-index: 99;
-  }
-  
-  nav a {
-    color: white;
-    padding: 14px 20px;
-    text-decoration: none;
-  }
-  
-  nav a:hover {
-    background-color: #0074D9;
-  }
-  
-  section {
-    padding: 40px;
-  }
-  
-  .about,
-  .services,
-  .news,
-  .contacts {
-    background-color: #f4f4f4;
-    margin: 20px auto;
-    padding: 20px;
-    border-radius: 10px;
-    max-width: 1000px;
-  }
-  
-  footer {
-    background-color: #353e47;
-    color: white;
+      margin: 0;
+      font-family: 'Roboto', Arial, sans-serif;
+      background-color: #f5f6f5;
+      color: #333;
+      line-height: 1.6;
+      }
+
+header {
+      background-color: #2f353b; /* Темно-серый цвет, как на сайте */
+      color: #ffffff;
+      padding: 10px 20px;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+.header-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between; /* Распределяем логотип и слоган */
+      max-width: 1200px; /* Ограничиваем ширину */
+      margin: 0 auto; /* Центрируем по горизонтали */
+    
+    }
+
+ h1,
+h2,
+h3 {
+    color: #2f353b; /* Темно-серый цвет заголовков, как header */
+    }
+
+h1 {
+    font-size: 32px;
     text-align: center;
-    padding: 15px;
-  }
+    margin-bottom: 20px;
+    }
+
+h2 {
+    font-size: 24px;
+    margin-top: 20px;
+    }
+footer {
+            background-color: #2f353b; 
+            color: #ffffff;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
   
-  .news-item {
-    margin-bottom: 15px;
-  }
-  
-  .news-item h3 {
-    margin: 0 0 5px 0;
-  }
-  
-  .news-item p {
-    margin: 0;
-  }
-  
-  .photo {
-    display: block;
-    overflow: hidden;
-    margin: 0 auto;
-  }
-  
-  .photo-content {
-    display: flex;
-    /* Используем flexbox */
-    justify-content: space-between;
-    /* Располагаем логотип слева, меню справа */
-    align-items: center;
-    /* Выравниваем по вертикали */
-    margin: 0 auto;
-    /* Центрируем контент (по желанию) */
-  }
+nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            color: #ffffff; /* Белый цвет текста меню */
+            text-decoration: none;
+            font-size: 16px;
+            padding: 10px;
+            transition: border 0.3s;
+        }
+
+        nav ul li a:hover {
+            border: 1px solid #cccccc; /* Серая рамка при наведении */
+            border-radius: 4px;
+        }
+
+        nav ul li a.active {
+            color: #ffffff;
+            font-weight: bold;
+        }
+.logo {
+            max-width: 150px;
+            }
+.container {
+            max-width: 1200px;
+            margin: 80px auto 20px;
+            padding: 20px;
+            }
+.section {
+            min-height: 50vh;
+            padding: 10px 0;
+            margin: 2px;
+            }
+.to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #2f353b; 
+            color: #ffffff;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 24px;
+            cursor: pointer;
+            display: none;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s;
+            }
+
+.to-top:hover {
+            background-color: #3f454b; 
+            }
+h1 {
+        font-size: 32px;
+        text-align: center;
+        margin-bottom: 20px;
+        opacity: 0; 
+        animation: fadeIn 2s ease-in-out forwards; 
+    }
+@keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+h1::before {
+    left: 0;
+    margin-right: 20px; /* Отступ между линией и текстом */
+}
+h1::after {
+    right: 0;
+    margin-left: 20px; /* Отступ между линией и текстом */
+}
