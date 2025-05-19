@@ -1,195 +1,234 @@
-> Анастасия:
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8" />
-    <title>Калькулятор валют (CHF)</title>
-    <link rel="stylesheet" href="RGZ.css">
-    <link rel="shortcut icon" href="../favicon2.ico" type="image/x-icon">
-    <link rel="icon" href="../Icon_bank/favicon-16x16.png">
-    <link rel="icon" href="../Icon_bank/favicon-32x32.png">
-    <link rel="icon" href="../Icon_bank/favicon.ico">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Курс валюты - Россети Ленэнерго</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="11.ico" type="image/x-icon">
+    <link rel="icon" href="22.png">
+    <link rel="icon" href="33.png">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
-        const apiDaily = 'https://www.cbr-xml-daily.ru/daily_json.js';
+    <style>
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            background-color: #f5f6f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #2f353b; 
+            color: #ffffff;
+            padding: 10px 20px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            max-width: 150px;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            color: #ffffff; /* Белый цвет текста меню */
+            text-decoration: none;
+            font-size: 16px;
+            padding: 10px;
+            transition: border 0.3s;
+        }
+
+        nav ul li a:hover {
+            border: 1px solid #cccccc; /* Серая рамка при наведении */
+            border-radius: 4px;
+        }
+
+        nav ul li a.active {
+            color: #ffffff;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 1000px; /* Увеличиваем ширину контейнера */
+            margin: 80px auto 20px;
+            padding: 30px; /* Увеличиваем отступы внутри контейнера */
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .calculator {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .calculator input {
+            width: 120px; 
+            padding: 5px;
+            margin-right: 10px;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 40vh;
+            width: 100%;
+            display: flex; 
+            justify-content: center;
+        }
+
+        footer {
+            background-color: #2f353b; 
+            color: #ffffff;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+        h1::before,
+        h1::after {
+            content: "";
+            position: absolute;
+            top: 20%; 
+            width: 40%; 
+            height: 2px; 
+            background-color: #333232; 
+        }
+    </style>
+     <script>
         let currentRate = 0;
-        let chart;
-        
-        async function fetchCurrentRate() {
-            const response = await fetch(apiDaily);
+
+        // Функция для получения актуального курса
+        async function fetchCurrencyData() {
+            const response = await fetch('https://www.cbr-xml-daily.ru/daily_json.js');
             const data = await response.json();
-            if (data.Valute && data.Valute.CHF) {
-                currentRate = data.Valute.CHF.Value;1000
-            } else {
-                // Если по каким-то причинам нет, выставим фиксированный курс или ошибку
-                currentRate = null;
-                alert('Курс CHF не найден!');
-            }
+            currentRate = data.Valute.AMD.Value;
+            document.getElementById('result').innerText = `Курс на сегодня: 1 AMD = ${currentRate.toFixed(4)} RUB`;
+            loadChart(data);
         }
-        
-        // Конвертация RUB → CHF
-        async function convertToCurrency() {
-            await fetchCurrentRate(); 
-            const rub = parseFloat(document.getElementById('amountRub').value);
-            if (!isNaN(rub) && rub >= 0 && currentRate) {
-                const chf = rub / currentRate; 
-                document.getElementById('conversionResult').innerText = `${rub} RUB ≈ ${chf.toFixed(2)} CHF`;
-            } else {
-                alert("Пожалуйста, введите подходящее число.");
-            }
+
+        // Функция для конвертации RUB в AMD
+        function convertToAMD() {
+            const amount = document.getElementById('amount').value;
+            const result = (amount / currentRate).toFixed(4);
+            document.getElementById('result').innerText = `${amount} RUB = ${result} AMD`;
         }
-        
-        async function convertToRub() {
-            await fetchCurrentRate();
-            const chf = parseFloat(document.getElementById('amountCurrency').value);
-            if (!isNaN(chf) && chf >= 0 && currentRate) {
-                const rub = chf * currentRate; 
-                document.getElementById('conversionResult').innerText = `${chf} CHF ≈ ${rub.toFixed(2)} RUB`;
-            } else {
-                alert("Пожалуйста, введите подходящее число.");
-            }
+
+        // Функция для конвертации AMD в RUB
+        function convertToRUB() {
+            const amount = document.getElementById('amount').value;
+            const result = (amount * currentRate).toFixed(4);
+            document.getElementById('result').innerText = `${amount} AMD = ${result} RUB`;
         }
-        
-        // Получение исторических данных за последние 30 дней
-        async function fetchHistoricalData() {
+
+        // Функция для загрузки диаграммы
+        function loadChart(data) {
+            const labels = [];
+            const values = [];
             const today = new Date();
-            const dates = [];
-            const rates = [];
-        
-            for (let i = 29; i >= 0; i--) {
-                const date = new Date(today);
-                date.setDate(today.getDate() - i);
-                const yyyy = date.getFullYear();
-                const mm = String(date.getMonth() + 1).padStart(2, '0');
-                const dd = String(date.getDate()).padStart(2, '0');
-                const url = `https://www.cbr-xml-daily.ru/archive/${yyyy}/${mm}/${dd}/daily_json.js`;
-        
-                try {
-                    const res = await fetch(url);
-                    if (res.ok) {
-                        const data = await res.json();
-                        if (data.Valute && data.Valute.CHF) {
-                            const rate = data.Valute.CHF.Value;
-                            rates.push(rate);
-                        } else {
-                            rates.push(null);
-                        }
-                        dates.push(`${dd}.${mm}`);
-                    } else {
-                        // Ошибка получения данных, добавляем null
-                        rates.push(null);
-                        dates.push(`${dd}.${mm}`);
-                    }
-                } catch {
-                    // В случае ошибки
-                    rates.push(null);
-                    dates.push(`${dd}.${mm}`);
-                }
+            const pastDate = new Date();
+            pastDate.setDate(today.getDate() - 30); // 30 дней назад
+
+            for (let i = 0; i < 30; i++) {
+                const date = new Date(pastDate);
+                date.setDate(pastDate.getDate() + i);
+                const dateString = date.toISOString().split('T')[0];
+                labels.push(dateString);
+                values.push(data.Valute.AMD.Previous); // Здесь можно использовать данные за каждый день
             }
-            return { dates, rates };
-        }
-        
-        // Построение графика
-        async function drawChart() {
-            const data = await fetchHistoricalData();
-            const ctx = document.getElementById('myChart').getContext('2d');
-        
-            if (chart) chart.destroy();
-        
-            chart = new Chart(ctx, {
-                type: 'line',
+
+            const ctx = document.getElementById('currencyChart').getContext('2d');
+            const currencyChart = new Chart(ctx, {
+                type: 'bar',
                 data: {
-                    labels: data.dates,
+                    labels: labels,
                     datasets: [{
-                        label: 'Курс CHF',
-                        data: data.rates,
-                        backgroundColor: 'rgba(0,0,255,0.2)',
-                        borderColor: 'rgba(0,0,255,1)',
-                        borderWidth: 2,
-                        fill: true,
-                        tension: 0.2
+                        label: 'Курс AMD',
+                        data: values,
+                        backgroundColor: 'rgba(54, 162, 235, 0.6)', // Синий цвет для столбцов
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1
                     }]
                 },
                 options: {
-                    responsive: true,
-                    onClick: (evt, elements) => {
-                        if (elements.length > 0) {
-                            const index = elements[0].index;
-                            document.getElementById('info').innerText =
-                                `Дата: ${data.dates[index]}, Курс: ${data.rates[index]}`;
-                        }
-                    },
                     scales: {
-                        y: { beginAtZero: false }
+                        y: {
+                            beginAtZero: true
+                        }
                     }
                 }
             });
+
+            // Обработка клика по столбцам
+            ctx.canvas.onclick = function (event) {
+                const activePoints = currencyChart.getElementsAtEventForMode(event, 'nearest', { intersect: true }, false);
+                if (activePoints.length) {
+                    const firstPoint = activePoints[0];
+                    const label = currencyChart.data.labels[firstPoint.index];
+                    const value = currencyChart.data.datasets[firstPoint.datasetIndex].data[firstPoint.index];
+                    alert(`Дата: ${label}, Курс: ${value}`);
+                }
+            };
         }
-        
-        fetchCurrentRate();
-        drawChart();
+
+        // Загружаем данные при загрузке страницы
+        window.onload = fetchCurrencyData;
     </script>
-
-    <style>
-        .converter {
-            margin-bottom: 20px;
-        }
-        #chartContainer {
-            width: 90%;
-            max-width: 900px;
-            margin: auto; 
-        }
-        #info {
-            margin-top: 10px;
-            font-weight: bold;
-        }
-        h1 {
-            font-size: 20px;
-            text-align: center;
-        }
-    </style>
 </head>
-
 <body>
     <header>
-        <nav class="menu">
+        <nav>
+            <img src="Картинки/logonew.png" class="logo">
             <ul>
-                <li><a href="index.html" class="active">О компании</a></li>
+                <li><a href="header.html">Главная</a></li>
+                <li><a href="menu.html">О компании</a></li>
                 <li><a href="news.html">Новости</a></li>
-                <li><a href="currency.html">Курс валют</a></li>
+                <li><a href="valuta.html" class="active">Курс валюты</a></li>
                 <li><a href="contacts.html">Контакты</a></li>
                 <li><a href="video.html">Видео</a></li>
             </ul>
         </nav>
-        <img src="logonew.png" class="logo"/>
     </header>
 
-    <main>
-        <h1>КУРС ВАЛЮТ</h1>
-        <h1><i>Валюта: Армянский драм</i></h1>
-
-        <hr>
-    
-        <div class="converter">
-            <label>Рубли: <input type="number" id="amountRub" value="1000" /></label>
-            <button onclick="convertToCurrency()">→ Армянский драм</button>
-            <br><br>
-            <label>Армянский драм: <input type="number" id="amountCurrency" /></label>
-            <button onclick="convertToRub()">→ Рубли</button>
+    <div class="container">
+        <h1><i>Курс валют</i></h1>
+        <div class="calculator">
+            <input type="number" id="amount" placeholder="Сумма в RUB" />
+            <button onclick="convertToAMD()">В конвертировать в AMD</button>
+            <button onclick="convertToRUB()">В конвертировать в RUB</button>
+            <p id="result"></p>
         </div>
-    
-        <div id="conversionResult"></div>
-    
-        <h3>Курс CHF за последние 30 дней</h3>
-        <div id="chartContainer">
-            <canvas id="myChart"></canvas>
+        <div class="chart-container">
+            <canvas id="currencyChart"></canvas>
         </div>
-        <div id="info"></div>
-    </main>
+    </div>
 
     <footer>
-        <p>&copy; Банк Санкт-Петербург</p>
+        <p>© 2025 ПАО «Россети Ленэнерго». Все права защищены.</p>
     </footer>
-
 </body>
 </html>
