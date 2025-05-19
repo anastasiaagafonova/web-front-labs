@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Новости - Россети Ленэнерго</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="11.ico" type="image/x-icon">
+    <link rel="icon" href="22.png">
+    <link rel="icon" href="33.png">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Roboto', Arial, sans-serif;
+            background-color: #f5f6f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #2f353b; 
+            color: #ffffff;
+            padding: 10px 20px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            max-width: 150px;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            color: #ffffff; /* Белый цвет текста меню */
+            text-decoration: none;
+            font-size: 16px;
+            padding: 10px;
+            transition: border 0.3s;
+        }
+
+        nav ul li a:hover {
+            border: 1px solid #cccccc; /* Серая рамка при наведении */
+            border-radius: 4px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 80px auto 20px;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 32px;
+            text-align: center;
+            margin-bottom: 20px;
+            opacity: 0; /* Начальная прозрачность */
+            animation: fadeIn 2s ease-in-out forwards; /* Анимация */
+        }
+
+        .news-item {
+            margin-bottom: 10px;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            overflow: hidden;
+            padding: 10px;
+        }
+
+        .news-content {
+            display: none;
+            padding: 10px;
+            border-top: 1px solid #ccc;
+            display: flex;
+        }
+
+        .news-date {
+            font-size: 14px; /* Размер шрифта для даты */
+            color: #777; /* Цвет текста для даты */
+            margin-top: 10px; /* Отступ сверху */
+            text-align: right; /* Выравнивание по правому краю */
+        }
+
+        .news-image {
+            flex: 1;
+            max-width: 45%; /* Уменьшаем ширину изображения */
+            margin-right: 10px;
+            transition: max-height 0.3s ease; /* Плавный переход для высоты изображения */
+            overflow: hidden;
+        }
+
+        .news-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .news-item.expanded .news-content {
+            display: flex; /* Показываем контент при раскрытии */
+        }
+
+        .news-item.expanded .news-image {
+            max-height: 200px; /* Увеличиваем высоту изображения при раскрытии */
+        }
+
+        .news-text {
+            flex: 2;
+        }
+
+        .news-text p {
+            margin: 0;
+        }
+
+        footer {
+            background-color: #2f353b; 
+            color: #ffffff;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+        h2 {
+            margin: 5px;
+        }
+        h1::before,
+        h1::after {
+            content: "";
+            position: absolute;
+            top: 20%; /* Центрируем по вертикали */
+            width: 35%; /* Ширина линий */
+            height: 2px; /* Толщина линий */
+            background-color: #333232; /* Цвет линий */
+        }
+        h1::before {
+            left: 0;
+            margin-right: 20px; /* Отступ между линией и текстом */
+        }
+        h1::after {
+            right: 0;
+            margin-left: 20px; /* Отступ между линией и текстом */
+        }
+    </style>
+    <script>
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        window.addEventListener('scroll', () => {
+            const toTopButton = document.querySelector('.to-top');
+            if (window.scrollY > 300) {
+                toTopButton.style.display = 'block';
+            } else {
+                toTopButton.style.display = 'none';
+            }
+        });
+
+        function toggleNewsContent(event) {
+            const newsItem = event.currentTarget;
+            const content = newsItem.querySelector('.news-content');
+            const text = newsItem.querySelector('.news-text');
+            newsItem.classList.toggle('expanded'); // Добавляем/удаляем класс для изменения состояния
+            content.style.display = newsItem.classList.contains('expanded') ? 'flex' : 'none'; // Показываем или скрываем контент
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <nav>
+            <img src="Картинки/logonew.png" class="logo">
+            <ul>
+                <li><a href="header.html">Главная</a></li>
+                <li><a href="menu.html" >О компании</a></li>
+                <li><a href="news.html" class="active">Новости</a></li>
+                <li><a href="valuta.html">Курс валюты</a></li>
+                <li><a href="contacts.html">Контакты</a></li>
+                <li><a href="video.html">Видео</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1><i>Новости компании</i></h1>
+
+        <div class="news-item" onclick="toggleNewsContent(event)">
+            <h2>Обновление инфраструктуры</h2>
+            <div class="news-content">
+                <div class="news-image">
+                    <img src="Картинки/news1.jpg" alt="Обновление инфраструктуры">
+                </div>
+                <div class="news-text">
+                    <p><i>«Россети Ленэнерго» приняли на обслуживание почти 70 км линий электропередачи за три месяца 2025 года. 
+                        «Россети Ленэнерго» продолжают активную работу по приему на баланс компании электросетевого оборудования 
+                        от некоммерческих организаций, физических и юридических лиц.</i></p>
+                        <span class="news-date">Дата: 10 сентября 2023</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="news-item" onclick="toggleNewsContent(event)">
+            <h2>Внедрение новых технологий</h2>
+            <div class="news-content">
+                <div class="news-image">
+                    <img src="Картинки/news2.webp" alt="Внедрение новых технологий">
+                </div>
+                <div class="news-text">
+                    <p><i>Компания внедрила новые цифровые технологии для повышения надежности энергоснабжения.</i></p>
+                    <span class="news-date">Дата: 10 сентября 2023</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="news-item" onclick="toggleNewsContent(event)">
+            <h2>Социальные проекты</h2>
+            <div class="news-content">
+                <div class="news-image">
+                    <img src="Картинки/news3.jpg" alt="Социальные проекты">
+                </div>
+                <div class="news-text">
+                    <p>Россети Ленэнерго активно участвуют в социальных проектах по поддержке местных сообществ.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="news-item" onclick="toggleNewsContent(event)">
+            <h2>Новость 4: Экологические инициативы</h2>
+            <div class="news-content">
+                <div class="news-image">
+                    <img src="Картинки/news4.jpg" alt="Экологические инициативы">
+                </div>
+                <div class="news-text">
+                    <p>Компания запускает новые программы по энергосбережению и охране окружающей среды.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="news-item" onclick="toggleNewsContent(event)">
+            <h2>Новость 5: Партнерство с местными властями</h2>
+            <div class="news-content">
+                <div class="news-image">
+                    <img src="Картинки/news5.jpg" alt="Партнерство с местными властями">
+                </div>
+                <div class="news-text">
+                    <p>Россети Ленэнерго заключили соглашение о сотрудничестве с местными властями для улучшения энергоснабжения.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="news-item" onclick="toggleNewsContent(event)">
+            <h2>Новость 6: Обучение сотрудников</h2>
+            <div class="news-content">
+                <div class="news-image">
+                    <img src="Картинки/news6.jpg" alt="Обучение сотрудников">
+                </div>
+                <div class="news-text">
+                    <p>Компания проводит обучение сотрудников по новым стандартам безопасности.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="news-item" onclick="toggleNewsContent(event)">
+            <h2>Новость 7: Инвестиции в развитие</h2>
+            <div class="news-content">
+                <div class="news-image">
+                    <img src="Картинки/news7.jpg" alt="Инвестиции в развитие">
+                </div>
+                <div class="news-text">
+                    <p>Россети Ленэнерго объявили о новых инвестициях в развитие электросетевой инфраструктуры.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="news-item" onclick="toggleNewsContent(event)">
+            <h2>Новость 8: Участие в выставках</h2>
+            <div class="news-content">
+                <div class="news-image">
+                    <img src="Картинки/news8.jpg" alt="Участие в выставках">
+                </div>
+                <div class="news-text">
+                    <p>Компания приняла участие в международной выставке энергетических технологий.</p>
+                </div>
+            </div>
+        </div>
+
+         <div class="news-item" onclick="toggleNewsContent(event)">
+            <h2>Новость 8: Участие в выставках</h2>
+            <div class="news-content">
+                <div class="news-image">
+                    <img src="Картинки/news8.jpg" alt="Участие в выставках">
+                </div>
+                <div class="news-text">
+                    <p>Компания приняла участие в международной выставке энергетических технологий.</p>
+                </div>
+             </div>
+        </div>
+        
+         <div class="news-item" onclick="toggleNewsContent(event)">
+            <h2>Новость 8: Участие в выставках</h2>
+            <div class="news-content">
+                <div class="news-image">
+                    <img src="Картинки/news8.jpg" alt="Участие в выставках">
+                </div>
+                <div class="news-text">
+                    <p>Компания приняла участие в международной выставке энергетических технологий.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+     <button class="to-top" onclick="scrollToTop()">↑</button>
+    <footer>
+        <p>© 2025 ПАО «Россети Ленэнерго». Все права защищены.</p>
+    </footer>
+</body>
+</html>
