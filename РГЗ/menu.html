@@ -4,102 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>О компании - Россети Ленэнерго</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="11.ico" type="image/x-icon">
+    <link rel="icon" href="22.png">
+    <link rel="icon" href="33.png">
     <style>
-        body {
-            margin: 0;
-            font-family: 'Roboto', Arial, sans-serif;
-            background-color: #f5f6f5;
-            color: #333;
-            line-height: 1.6;
-            }
-
-            header {
-            background-color: #2f353b; /* Темно-серый цвет, как на сайте */
-            color: #ffffff;
-            padding: 10px 20px;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            }
-
-            .logo {
-            max-width: 150px;
-            }
-
-            nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            }
-
-            nav ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            }
-
-            nav ul li {
-            margin-left: 20px;
-            }
-
-            nav ul li a {
-            color: #ffffff; /* Белый цвет текста меню */
-            text-decoration: none;
-            font-size: 16px;
-            padding: 10px;
-            transition: border 0.3s;
-            }
-
-            nav ul li a:hover {
-            border: 1px solid #cccccc; /* Серая рамка при наведении */
-            border-radius: 4px;
-            }
-
-            nav ul li a.active {
-            color: #ffffff;
-            font-weight: bold;
-            }
-
-            .container {
+        .container {
             max-width: 1200px;
             margin: 80px auto 20px;
             padding: 20px;
             }
-
-            h1,
-            h2,
-            h3 {
-            color: #2f353b; /* Темно-серый цвет заголовков, как header */
+        h1,
+        h2,
+        h3 {
+            color: #2f353b; 
             }
 
-            h1 {
+        h1 {
             font-size: 32px;
             text-align: center;
             margin-bottom: 20px;
             }
 
-            h2 {
+        h2 {
             font-size: 24px;
             margin-top: 20px;
             }
 
-            p {
+        p {
             font-size: 16px;
             margin-bottom: 5px;
             }
 
-            .highlight {
-            font-weight: bold;
-            font-style: italic;
-            text-decoration: underline;
-            }
-
-            .image {
+        .image {
             max-width: 50%;
             height: auto;
             display: block;
@@ -107,19 +44,19 @@
             padding: 10px;
             }
 
-            .image img {
+        .image img {
             max-width: 100%;
             height: auto;
-            border-radius: 10px; /*  Закругляем края изображения */
+            border-radius: 10px; 
             display: block;
             margin: 0 auto;
             }
 
-            .to-top {
+        .to-top {
             position: fixed;
             bottom: 20px;
             right: 20px;
-            background-color: #2f353b; /* Темно-серый, как header */
+            background-color: #2f353b; 
             color: #ffffff;
             border: none;
             border-radius: 50%;
@@ -132,18 +69,17 @@
             transition: background-color 0.3s;
             }
 
-            .to-top:hover {
-            background-color: #3f454b; /* Чуть светлее при наведении */
+        .to-top:hover {
+            background-color: #3f454b; 
             }
 
-            .section {
+        .section {
             min-height: 50vh;
             padding: 10px 0;
             margin: 2px;
-            /* Небольшой отступ после раздела */
             }
         footer {
-            background-color: #2f353b; /* Темно-серый цвет, как header */
+            background-color: #2f353b; 
             color: #ffffff;
             text-align: center;
             padding: 20px;
@@ -151,6 +87,15 @@
         }
         .logo1 {
             width: 100%;
+        }
+        h1::before,
+        h1::after {
+            content: "";
+            position: absolute;
+            top: 20%; /* Центрируем по вертикали */
+            width: 30%; /* Ширина линий */
+            height: 2px; /* Толщина линий */
+            background-color: #333232; /* Цвет линий */
         }
     </style>
     <script>
@@ -171,11 +116,12 @@
 <body>
     <header>
         <nav>
-            <img src="logonew.png" class="logo">
+            <img src="Картинки/logonew.png" class="logo">
             <ul>
+                <li><a href="header.html">Главная</a></li>
                 <li><a href="menu.html" class="active">О компании</a></li>
                 <li><a href="news.html">Новости</a></li>
-                <li><a href="currency.html">Курс валют</a></li>
+                <li><a href="valuta.html">Курс валюты</a></li>
                 <li><a href="contacts.html">Контакты</a></li>
                 <li><a href="video.html">Видео</a></li>
             </ul>
@@ -183,21 +129,21 @@
     </header>
 
     <div class="container">
-        <h1>О компании Россети Ленэнерго</h1>
-        <img src="1.jpg" class="logo1">
+        <h1><i>О компании Россети Ленэнерго</i></h1>
+        <img src="Картинки/1.jpg" class="logo1">
 
         <div class="section">
             <h2>Общая информация</h2>
             <p>ПАО «<span class="highlight">Россети Ленэнерго</span>» (тикер: LSNG) – одна из крупнейших электросетевых компаний России, обеспечивающая надежное энергоснабжение <a href="https://www.spb.ru/" target="_blank">Санкт-Петербурга</a> и Ленинградской области. Компания была основана в <strong>2005 году</strong> в результате реорганизации ОАО «Ленэнерго», однако история энергоснабжения региона начинается с конца XIX века.</p>
             <p>Основные направления деятельности включают передачу электроэнергии, подключение потребителей к электрическим сетям и обслуживание электросетевой инфраструктуры. <em>Россети Ленэнерго</em> обслуживает более <strong>2,5 миллионов</strong> жителей и тысячи предприятий региона.</p>
-            <img src="2.webp" class="image">
+            <img src="Картинки/2.webp" class="image">
         </div>
 
         <div class="section">
             <h2>История компании</h2>
             <p>История <a href="https://rosseti-lenenergo.ru/about/history/" target="_blank">Россети Ленэнерго</a> берет начало с 1886 года, когда в Санкт-Петербурге была введена в эксплуатацию первая электростанция. В советский период энергосистема региона развивалась под управлением «Ленэнерго».</p>
             <p>В 2005 году в рамках реформы электроэнергетики было создано ОАО «Ленэнерго», которое в 2015 году вошло в состав ПАО «Россети» и получило название «Россети Ленэнерго». За годы работы компания модернизировала сотни километров линий электропередач, внедрила <span class="highlight">цифровые технологии</span> в управление сетями и реализовала крупные инфраструктурные проекты, такие как обеспечение электроэнергией новых жилых комплексов и промышленных объектов.</p>
-            <img src="3.webp" class="image">
+            <img src="Картинки/3.webp" class="image">
         </div>
 
         <div class="section">
@@ -210,7 +156,7 @@
                 <li><b>Ответственность</b>: забота об экологии и обществе.</li>
             </ul>
             <p>Компания активно участвует в социальных и экологических проектах, таких как <a href="https://rosseti-lenenergo.ru/social/" target="_blank">программы энергосбережения</a> и поддержка местных сообществ.</p>
-            <img src="4.webp" class="image">
+            <img src="Картинки/4.webp" class="image">
         </div>
     </div>
     <button class="to-top" onclick="scrollToTop()">↑</button>
