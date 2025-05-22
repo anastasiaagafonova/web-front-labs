@@ -52,7 +52,7 @@
         }
 
         nav ul li a {
-            color: #ffffff; /* Белый цвет текста меню */
+            color: #ffffff; 
             text-decoration: none;
             font-size: 16px;
             padding: 10px;
@@ -60,7 +60,7 @@
         }
 
         nav ul li a:hover {
-            border: 1px solid #cccccc; /* Серая рамка при наведении */
+            border: 1px solid #cccccc; 
             border-radius: 4px;
         }
 
@@ -74,8 +74,8 @@
             font-size: 32px;
             text-align: center;
             margin-bottom: 20px;
-            opacity: 0; /* Начальная прозрачность */
-            animation: fadeIn 2s ease-in-out forwards; /* Анимация */
+            opacity: 0; 
+            animation: fadeIn 2s ease-in-out forwards; 
         }
 
         .news-item {
@@ -96,17 +96,17 @@
         }
 
         .news-date {
-            font-size: 14px; /* Размер шрифта для даты */
-            color: #777; /* Цвет текста для даты */
-            margin-top: 10px; /* Отступ сверху */
-            text-align: right; /* Выравнивание по правому краю */
+            font-size: 14px; 
+            color: #777; 
+            margin-top: 10px; 
+            text-align: right; 
         }
 
         .news-image {
             flex: 1;
-            max-width: 45%; /* Уменьшаем ширину изображения */
+            max-width: 45%; 
             margin-right: 10px;
-            transition: max-height 0.3s ease; /* Плавный переход для высоты изображения */
+            transition: max-height 0.3s ease; 
             overflow: hidden;
         }
 
@@ -117,11 +117,11 @@
         }
 
         .news-item.expanded .news-content {
-            display: flex; /* Показываем контент при раскрытии */
+            display: flex; 
         }
 
         .news-item.expanded .news-image {
-            max-height: 200px; /* Увеличиваем высоту изображения при раскрытии */
+            max-height: 200px; 
         }
 
         .news-text {
@@ -146,22 +146,22 @@
         h1::after {
             content: "";
             position: absolute;
-            top: 20%; /* Центрируем по вертикали */
-            width: 35%; /* Ширина линий */
-            height: 2px; /* Толщина линий */
-            background-color: #333232; /* Цвет линий */
+            top: 20%;
+            width: 35%; 
+            height: 2px; 
+            background-color: #333232; 
         }
         h1::before {
             left: 0;
-            margin-right: 20px; /* Отступ между линией и текстом */
+            margin-right: 20px; 
         }
         h1::after {
             right: 0;
-            margin-left: 20px; /* Отступ между линией и текстом */
+            margin-left: 20px; 
         }
     </style>
     <script>
-
+        //Прокрутка страницы//
         function scrollToTop() {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
@@ -175,12 +175,13 @@
             }
         });
 
+        //Скрытие блоков//
         function toggleNewsContent(event) {
             const newsItem = event.currentTarget;
             const content = newsItem.querySelector('.news-content');
             const text = newsItem.querySelector('.news-text');
-            newsItem.classList.toggle('expanded'); // Добавляем/удаляем класс для изменения состояния
-            content.style.display = newsItem.classList.contains('expanded') ? 'flex' : 'none'; // Показываем или скрываем контент
+            newsItem.classList.toggle('expanded'); 
+            content.style.display = newsItem.classList.contains('expanded') ? 'flex' : 'none'; 
         }
     </script>
 </head>
@@ -189,7 +190,6 @@
         <nav>
             <img src="Картинки/logonew.png" class="logo">
             <ul>
-                <li><a href="header.html">Главная</a></li>
                 <li><a href="menu.html" >О компании</a></li>
                 <li><a href="news.html" class="active">Новости</a></li>
                 <li><a href="valuta.html">Курс валюты</a></li>
@@ -198,7 +198,7 @@
             </ul>
         </nav>
     </header>
-
+    <main>
     <div class="container">
         <h1><i>Новости компании</i></h1>
 
@@ -238,95 +238,111 @@
                 </div>
                 <div class="news-text">
                     <p>Россети Ленэнерго активно участвуют в социальных проектах по поддержке местных сообществ.</p>
+                     <span class="news-date">Дата: 10 октября 2023</span>
                 </div>
             </div>
         </div>
 
         <div class="news-item" onclick="toggleNewsContent(event)">
-            <h2>Новость 4: Экологические инициативы</h2>
+            <h2>Экологические инициативы</h2>
             <div class="news-content">
                 <div class="news-image">
-                    <img src="Картинки/news4.jpg" alt="Экологические инициативы">
+                    <img src="Картинки/news4.webp" alt="Экологические инициативы">
                 </div>
                 <div class="news-text">
                     <p>Компания запускает новые программы по энергосбережению и охране окружающей среды.</p>
+                     <span class="news-date">Дата: 23 декабря 2023</span>
                 </div>
             </div>
         </div>
 
         <div class="news-item" onclick="toggleNewsContent(event)">
-            <h2>Новость 5: Партнерство с местными властями</h2>
+            <h2>Партнерство с местными властями</h2>
             <div class="news-content">
                 <div class="news-image">
-                    <img src="Картинки/news5.jpg" alt="Партнерство с местными властями">
+                    <img src="Картинки/5.webp" alt="Партнерство с местными властями">
                 </div>
                 <div class="news-text">
                     <p>Россети Ленэнерго заключили соглашение о сотрудничестве с местными властями для улучшения энергоснабжения.</p>
+                     <span class="news-date">Дата: 8 января 2024</span>
                 </div>
             </div>
         </div>
 
         <div class="news-item" onclick="toggleNewsContent(event)">
-            <h2>Новость 6: Обучение сотрудников</h2>
+            <h2>Обучение сотрудников</h2>
             <div class="news-content">
                 <div class="news-image">
-                    <img src="Картинки/news6.jpg" alt="Обучение сотрудников">
+                    <img src="Картинки/6.jpg" alt="Обучение сотрудников">
                 </div>
                 <div class="news-text">
                     <p>Компания проводит обучение сотрудников по новым стандартам безопасности.</p>
+                     <span class="news-date">Дата: 24 февраля 2024</span>
                 </div>
             </div>
         </div>
 
         <div class="news-item" onclick="toggleNewsContent(event)">
-            <h2>Новость 7: Инвестиции в развитие</h2>
+            <h2>Инвестиции в развитие</h2>
             <div class="news-content">
                 <div class="news-image">
-                    <img src="Картинки/news7.jpg" alt="Инвестиции в развитие">
+                    <img src="Картинки/7.jpg" alt="Инвестиции в развитие">
                 </div>
                 <div class="news-text">
                     <p>Россети Ленэнерго объявили о новых инвестициях в развитие электросетевой инфраструктуры.</p>
+                     <span class="news-date">Дата: 5 марта 2024</span>
                 </div>
             </div>
         </div>
 
         <div class="news-item" onclick="toggleNewsContent(event)">
-            <h2>Новость 8: Участие в выставках</h2>
+            <h2>Участие в выставках</h2>
             <div class="news-content">
                 <div class="news-image">
-                    <img src="Картинки/news8.jpg" alt="Участие в выставках">
+                    <img src="Картинки/8.jpg" alt="Участие в выставках">
                 </div>
                 <div class="news-text">
                     <p>Компания приняла участие в международной выставке энергетических технологий.</p>
+                     <span class="news-date">Дата: 7 апреля 2024</span>
                 </div>
             </div>
         </div>
 
          <div class="news-item" onclick="toggleNewsContent(event)">
-            <h2>Новость 8: Участие в выставках</h2>
+            <h2>Финансовая отчетность</h2>
             <div class="news-content">
                 <div class="news-image">
-                    <img src="Картинки/news8.jpg" alt="Участие в выставках">
+                    <img src="Картинки/9.webp" alt="Участие в выставках">
                 </div>
                 <div class="news-text">
-                    <p>Компания приняла участие в международной выставке энергетических технологий.</p>
+                    <p>ПАО «Россети Ленэнерго» опубликовало финансовую отчетность за 
+                        первые 3 месяца 2025 года, составленную в соответствии с российскими 
+                        стандартами бухгалтерского учета (РСБУ). Чистая прибыль компании составила 11,5 млрд рублей, 
+                        показав рост на 11,6%.</p>
+                     <span class="news-date">Дата: 18 мая 2024</span>
                 </div>
              </div>
         </div>
         
          <div class="news-item" onclick="toggleNewsContent(event)">
-            <h2>Новость 8: Участие в выставках</h2>
+            <h2>Новое название станции</h2>
             <div class="news-content">
                 <div class="news-image">
-                    <img src="Картинки/news8.jpg" alt="Участие в выставках">
+                    <img src="Картинки/10.jpg" alt="Участие в выставках">
                 </div>
                 <div class="news-text">
-                    <p>Компания приняла участие в международной выставке энергетических технологий.</p>
+                    <p>В торжественной церемонии участвовали Губернатор города Александр Беглов, Генеральный директор 
+                        ПАО «Россети» Андрей Рюмин и глава ПАО «Россети Ленэнерго» Игорь Кузьмин.
+                        Подстанция 110 кВ, которая обеспечивает электроснабжение Адмиралтейского района, 
+                        названа в честь Никодима Туманова. Он был автором уникального проекта электропередачи «Кабель жизни», 
+                        который позволил прорвать энергетическую блокаду Ленинграда</p>
+                     <span class="news-date">Дата: 28 мая 2024</span>
                 </div>
             </div>
         </div>
     </div>
-     <button class="to-top" onclick="scrollToTop()">↑</button>
+    <button class="to-top" onclick="scrollToTop()">↑</button>
+    </main>
     <footer>
         <p>© 2025 ПАО «Россети Ленэнерго». Все права защищены.</p>
     </footer>
