@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Контакты - Россети Ленэнерго</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="shortcut icon" href="../11.ico" type="image/x-icon">
-    <link rel="icon" href="../22.png">
-    <link rel="icon" href="../33.png">
+    <link rel="shortcut icon" href="11.ico" type="image/x-icon">
+    <link rel="icon" href="22.png">
+    <link rel="icon" href="33.png">
     <style>
         body {
             font-family: 'Roboto', Arial, sans-serif;
@@ -20,9 +20,9 @@
             background-color: #2f353b; 
             color: #ffffff;
             padding: 10px 20px;
-            position: fixed;
-            width: 100%;
-            top: 0;
+            position: fixed; 
+            width: 100%; 
+            top: 0; 
             z-index: 1000;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
@@ -51,7 +51,7 @@
         }
 
         nav ul li a {
-            color: #ffffff; /* Белый цвет текста меню */
+            color: #ffffff; 
             text-decoration: none;
             font-size: 16px;
             padding: 10px;
@@ -59,7 +59,7 @@
         }
 
         nav ul li a:hover {
-            border: 1px solid #cccccc; /* Серая рамка при наведении */
+            border: 1px solid #cccccc; 
             border-radius: 4px;
         }
 
@@ -69,24 +69,27 @@
         }
 
         .container {
-            max-width: 800px; /* Ширина контейнера */
+            max-width: 800px; 
             margin: 80px auto 20px;
-            padding: 30px; /* Отступы внутри контейнера */
+            padding: 30px; 
             background-color: #fff;
             border-radius: 10px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         h1 {
+            font-size: 32px;
             text-align: center;
             margin-bottom: 20px;
+            opacity: 0; 
+            animation: fadeIn 2s ease-in-out forwards; 
         }
 
         .contact-title {
             font-size: 24px;
             margin: 20px 0;
             text-align: center;
-            color: #2f353b; /* Цвет заголовка */
+            color: #2f353b;
         }
 
         .contact-info {
@@ -95,7 +98,7 @@
 
         .map-container {
             position: relative;
-            height: 400px; /* Высота карты */
+            height: 400px; 
             width: 100%;
             border-radius: 10px;
             overflow: hidden;
@@ -114,6 +117,15 @@
             padding: 20px;
             margin-top: 40px;
         }
+         h1::before,
+        h1::after {
+            content: "";
+            position: absolute;
+            top: 21%; 
+            width: 32%; 
+            height: 2px; 
+            background-color: #333232;
+        }
     </style>
 </head>
 <body>
@@ -121,33 +133,30 @@
         <nav>
             <img src="Картинки/logonew.png" class="logo">
             <ul>
-                <li><a href="header.html">Главная</a></li>
                 <li><a href="menu.html">О компании</a></li>
                 <li><a href="news.html">Новости</a></li>
-                <li><a href="currency.html">Курс валют</a></li>
+                <li><a href="valuta.html">Курс валют</a></li>
                 <li><a href="contacts.html" class="active">Контакты</a></li>
                 <li><a href="video.html">Видео</a></li>
             </ul>
         </nav>
     </header>
-
-    <h1>Контакты</h1> <!-- Заголовок страницы -->
-    
-    <div class="container">
-        <div class="contact-title">Наши контактные данные</div>
-        <div class="contact-info">
-            <p><strong>Телефон:</strong> +7 (812) 123-45-67</p>
-            <p><strong>Адрес:</strong> 1-й Муринский проспект, д.7, ст.м. Лесная</p>
-            <p><strong>Email:</strong> info@rosseti-lenenergo.ru</p>
+    <main>
+        <div class="container">
+            <h1><i>Наши контактные данные</i></h1>
+            <div class="contact-info">
+                <p><strong>Телефон:</strong> +7 (812) 123-45-67</p>
+                <p><strong>Адрес:</strong> 1-й Муринский проспект, д.7, ст.м. Лесная</p>
+                <p><strong>Email:</strong> info@rosseti-lenenergo.ru</p>
+            </div>
+            <div class="map-container">
+                <iframe 
+                    src="https://yandex.ru/map-widget/v1/-/CCU8g0g5uD?ll=30.123456,59.123456&z=15&mode=search&ol=geo&oid=1234567890&pt=30.123456,59.123456,pm2d" 
+                    allowfullscreen="true">
+                </iframe>
+            </div>
         </div>
-        <div class="map-container">
-            <iframe 
-                src="https://yandex.ru/map-widget/v1/-/CCU8g0g5uD?ll=30.123456,59.123456&z=15&mode=search&ol=geo&oid=1234567890&pt=30.123456,59.123456,pm2d" 
-                allowfullscreen="true">
-            </iframe>
-        </div>
-    </div>
-
+    </main>
     <footer>
         <p>© 2025 ПАО «Россети Ленэнерго». Все права защищены.</p>
     </footer>
