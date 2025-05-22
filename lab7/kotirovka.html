@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Котировка акций ВТБ</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../favicon-32x32.png">
+    <link rel="icon" href="../favicon-16x16.png">
+    <style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: center;
+    }
+    .positive {
+        color: green;
+    }
+    .negative {
+        color: red;
+    }
+    .neutral {
+        color: black;
+    }
+    button {
+        border-radius: 5px;
+        border-color: rgb(113, 113, 218);
+        width: 100px;
+        height: 50px;
+    }
+    </style>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const dates = ["2025-05-15", "2025-05-16", "2025-05-17", "2025-05-18", "2025-05-19", "2025-05-20", "2025-05-21", "2025-05-22", "2025-05-23", "2025-05-24"];
+        const prices = [0.12, 0.13, 0.11, 0.14, 0.15, 0.14, 0.16, 0.15, 0.17, 0.16];
+
+        document.getElementById('fetchData').addEventListener('click', function() {
+            const tableBody = document.getElementById('stockTable').getElementsByTagName('tbody')[0];
+            tableBody.innerHTML = ""; // Очистка таблицы
+
+            let total = 0;
+            let max = prices[0];
+            let min = prices[0];
+
+            for (let i = 0; i < prices.length; i++) {
+                const row = tableBody.insertRow();
+                const dateCell = row.insertCell(0);
+                const priceCell = row.insertCell(1);
+                const diffCell = row.insertCell(2);
+
+                dateCell.textContent = dates[i];
+                priceCell.textContent = prices[i].toFixed(2);
+                total += prices[i];
+
+                if (i > 0) {
+                    const difference = prices[i] - prices[i - 1];
+                    diffCell.textContent = difference.toFixed(2);
+                    if (difference > 0) {
+                        diffCell.className = "positive";
+                    } else if (difference < 0) {
+                        diffCell.className = "negative";
+                    } else {
+                        diffCell.className = "neutral";
+                    }
+                } else {
+                    diffCell.textContent = "-";
+                }
+
+                if (prices[i] > max) max = prices[i];
+                if (prices[i] < min) min = prices[i];
+            }
+
+            const average = total / prices.length;
+            document.getElementById('average').textContent = average.toFixed(2);
+            document.getElementById('max').textContent = max.toFixed(2);
+            document.getElementById('min').textContent = min.toFixed(2);
+        });
+    });
+    </script>
+</head>
+<body>
+    <header>
+        НГТУ, ФБ, Лабораторная работа 7
+                <hr>
+    </header>
+    <main>
+    <button id="fetchData">Курс акций ВТБ</button>
+    <table id="stockTable">
+        <thead>
+            <tr>
+                <th>Дата</th>
+                <th>Цена акций</th>
+                <th>Разница</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <div id="statistics">
+        <p>Среднее значение: <span id="average"></span></p>
+        <p>Максимальное значение: <span id="max"></span></p>
+        <p>Минимальное значение: <span id="min"></span></p>
+    </div>
+    </main>
+    <footer>
+        &copy; Анастасия Агафонова, ФБИ-32, 2 курс, 2025
+    </footer>
+</body>
+</html>
