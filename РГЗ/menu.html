@@ -92,17 +92,18 @@
         h1::after {
             content: "";
             position: absolute;
-            top: 20%; /* Центрируем по вертикали */
-            width: 30%; /* Ширина линий */
-            height: 2px; /* Толщина линий */
-            background-color: #333232; /* Цвет линий */
+            top: 20%; 
+            width: 30%; 
+            height: 2px; 
+            background-color: #333232; 
         }
     </style>
     <script>
+        //Прокрутка страницы//
         function scrollToTop() {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
-
+        
         window.addEventListener('scroll', () => {
             const toTopButton = document.querySelector('.to-top');
             if (window.scrollY > 300) {
