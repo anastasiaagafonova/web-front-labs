@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Прогноз погоды</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../favicon-32x32.png">
+    <link rel="icon" href="../favicon-16x16.png">
+    <style>
+        main{
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 {
+            color: #0277bd; 
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #0288d1; /* Синий */
+            color: white;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0277bd; /* Темнее синий */
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 5px;
+            background-color: rgb(194, 248, 248);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+    </style>
+    <script>
+        async function getTemperature() {
+            const url = "https://api.open-meteo.com/v1/forecast?latitude=55.0415&longitude=82.9346&hourly=temperature_2m&timezone=Asia%2FBangkok";
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+
+                const times = data.hourly.time;
+                const temperatures = data.hourly.temperature_2m;
+
+                // Получаем индексы для 8:00, 12:00 и 20:00
+                const today = new Date();
+                const dateString = today.toISOString().split('T')[0]; // Получаем текущую дату в формате YYYY-MM-DD
+
+                const morningIndex = times.findIndex(time => time.startsWith(dateString + "T08:00"));
+                const noonIndex = times.findIndex(time => time.startsWith(dateString + "T12:00"));
+                const eveningIndex = times.findIndex(time => time.startsWith(dateString + "T20:00"));
+
+                const morningTemp = temperatures[morningIndex];
+                const noonTemp = temperatures[noonIndex];
+                const eveningTemp = temperatures[eveningIndex];
+
+                const resultDiv = document.getElementById('result');
+                resultDiv.innerHTML = `
+                    <h3>Температура в Новосибирске на ${dateString}</h3>
+                    <p>8:00 - ${morningTemp.toFixed(1)} °C</p>
+                    <p>12:00 - ${noonTemp.toFixed(1)} °C</p>
+                    <p>20:00 - ${eveningTemp.toFixed(1)} °C</p>
+                `;
+            } catch (error) {
+                console.error("Ошибка при получении данных:", error);
+            }
+        }
+    </script>
+</head>
+<body>
+    <header>
+        НГТУ, ФБ, Лабораторная работа 7
+         <hr>
+    </header>
+    <main>
+    <h1>Прогноз погоды в Новосибирске</h1>
+    <button onclick="getTemperature()">Получить температуру</button>
+
+    <div id="result" class="result"></div>
+    </main>
+    <footer>
+        &copy; Анастасия Агафонова, ФБИ-32, 2 курс, 2025
+    </footer>
+</body>
+</html>
