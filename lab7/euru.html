@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Курс евро</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../favicon-32x32.png">
+    <link rel="icon" href="../favicon-16x16.png">
+    <style>
+        main {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 {
+            color: #333;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50; 
+            color: white;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #45a049; 
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(255, 7, 7, 0.1);
+            width: 500px;
+            height: 250px;
+            text-align: center;
+        }
+        .positive {
+            color: #4CAF50; 
+        }
+        .negative {
+            color: #f44336; 
+        }
+        p {
+            margin: 10px 0;
+        }
+        a {
+            color: #4CAF50; 
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <script>
+        async function getEuroExchangeRate() {
+            const url = "https://www.cbr-xml-daily.ru/daily_json.js";
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+
+                const euroCurrent = data.Valute.EUR.Value;
+                const euroPrevious = data.Valute.EUR.Previous;
+                const date = data.Date;
+
+                const difference = euroCurrent - euroPrevious;
+                const differenceText = difference > 0 ? "поднялся" : "опустился";
+
+                const resultDiv = document.getElementById('result');
+                resultDiv.innerHTML = `
+                    <h3>Курс евро на ${date}</h3>
+                    <p>Текущий курс: <strong>${euroCurrent.toFixed(2)} ₽</strong></p>
+                    <p>Курс за предыдущий день: <strong>${euroPrevious.toFixed(2)} ₽</strong></p>
+                    <p class="${difference > 0 ? 'positive' : 'negative'}">
+                        Разница: <strong>${difference.toFixed(2)} ₽</strong> (${differenceText})
+                    </p>
+                `;
+            } catch (error) {
+                console.error("Ошибка при получении данных:", error);
+            }
+        }
+    </script>
+</head>
+<body>
+    <header>
+            НГТУ, ФБ, Лабораторная работа 7
+                    <hr>
+    </header>
+    <main>
+    <h1>Курс евро</h1>
+    <button onclick="getEuroExchangeRate()">Получить курс евро</button>
+
+    <div id="result" class="result"></div>
+
+    </main>
+    <footer>
+        &copy; Анастасия Агафонова, ФБИ-32, 2 курс, 2025
+    </footer>
+</body>
+</html>
