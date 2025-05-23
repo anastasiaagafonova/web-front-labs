@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Дополнительное задание</title>
+        <link rel="stylesheet" href="../main.css">
+        <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+        <link rel="icon" href="../favicon-32x32.png">
+        <link rel="icon" href="../favicon-16x16.png">
+        <style>
+            body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            }
+            canvas {
+                max-width: 600px;
+                margin: auto;
+            }
+        </style>
+        <script>
+            function getWeatherData() {
+            const url = 'https://api.open-meteo.com/v1/forecast?latitude=55.7558&longitude=37.6173&hourly=temperature_2m,pressure_msl&current_weather=true';
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    displayCurrentWeather(data.current_weather);
+                    createTemperatureChart(data.hourly.time, data.hourly.temperature_2m);
+                    createPressureChart(data.hourly.time, data.hourly.pressure_msl);
+                })
+                .catch(error => console.error('Ошибка:', error));
+            }
+
+            function displayCurrentWeather(currentWeather) {
+            document.getElementById('currentWeather').innerHTML = `
+                <h2>Текущая погода</h2>
+                <p>Температура: <strong>${currentWeather.temperature} °C</strong></p>
+                <p>Скорость ветра: <strong>${currentWeather.windspeed} м/с</strong></p>
+            `;
+            }
+
+            function createTemperatureChart(labels, data) {
+            new Chart(document.getElementById('temperatureChart').getContext('2d'), {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Температура (°C)',
+                        data: data,
+                        backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: { beginAtZero: true }
+                    }
+                }
+            });
+            }
+
+            function createPressureChart(labels, data) {
+            new Chart(document.getElementById('pressureChart').getContext('2d'), {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Давление (гПа)',
+                        data: data,
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        fill: false,
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: { beginAtZero: true }
+                    }
+                }
+            });
+            }
+        </script>
+    </head>
+    <body>
+        <header>
+            НГТУ, ФБ, Лабораторная работа 7
+                    <hr>
+        </header>
+        <main>
+            <h1>Прогноз погоды</h1>
+            <button onclick="getWeatherData()">Получить данные о погоде</button>
+            <div id="currentWeather"></div>
+            <canvas id="temperatureChart"></canvas>
+            <canvas id="pressureChart"></canvas>
+        </main>
+        <footer>
+            &copy; Анастасия Агафонова, ФБИ-32, 2 курс, 2025
+        </footer>
+    </body>
+   
