@@ -11,84 +11,35 @@
     <link rel="icon" href="../favicon-16x16.png">
     <style>
         button {
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-            border: none;
+            width: 100px;
+            height: 200px;
             border-radius: 5px;
-            background-color: #4CAF50; 
-            color: white;
-            transition: background-color 0.3s;
-        }
-        button:hover {
-            background-color: #45a049; 
-        }
-        .result {
-            margin-top: 20px;
-            padding: 15px;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(255, 7, 7, 0.1);
-            width: 500px;
-            height: 250px;
-            text-align: center;
-        }
-        .positive {
-            color: #4CAF50; 
-        }
-        .negative {
-            color: #f44336; 
-        }
-        p {
-            margin: 10px 0;
-        }
-        a {
-            color: #4CAF50; 
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
+            background-color: blueviolet;
         }
     </style>
     <script>
-        async function getEuroExchangeRate() {
-            const url = "https://www.cbr-xml-daily.ru/daily_json.js";
-            try {
-                const response = await fetch(url);
-                const data = await response.json();
-
-                const euroCurrent = data.Valute.EUR.Value;
-                const euroPrevious = data.Valute.EUR.Previous;
-                const date = data.Date;
-
-                const difference = euroCurrent - euroPrevious;
-                const differenceText = difference > 0 ? "поднялся" : "опустился";
-
-                const resultDiv = document.getElementById('result');
-                resultDiv.innerHTML = `
-                    <h3>Курс евро на ${date}</h3>
-                    <p>Текущий курс: <strong>${euroCurrent.toFixed(2)} ₽</strong></p>
-                    <p>Курс за предыдущий день: <strong>${euroPrevious.toFixed(2)} ₽</strong></p>
-                    <p class="${difference > 0 ? 'positive' : 'negative'}">
-                        Разница: <strong>${difference.toFixed(2)} ₽</strong> (${differenceText})
-                    </p>
-                `;
-            } catch (error) {
-                console.error("Ошибка при получении данных:", error);
-            }
+        function getEuroExchangeRate() {
+            const url ='https://www.cbr-xml-daily.ru/daily json.js';
+            fetch(url)
+                .then(function (response) {
+                    return response.json();
+                }) 
+                .then(function (json) {
+                alert (json.Valute.EUR.Value):
+                }):
         }
     </script>
 </head>
 <body>
-    <header>
-            НГТУ, ФБ, Лабораторная работа 7
-                    <hr>
+   <header>
+        НГТУ, ФБ, Лабораторная работа 7
+        <hr>
     </header>
     <main>
-    <h1>Курс евро</h1>
-    <button onclick="getEuroExchangeRate()">Получить курс евро</button>
-
-    <div id="result" class="result"></div>
-
+        <button onclick="getEuroExchangeRate()">Получить курс евро</button>
+        <p>
+            <a href="https://www.cbr-xml-daily.ru/" target="_blank">Курсы валют, API</a>
+        </p>
     </main>
     <footer>
         &copy; Анастасия Агафонова, ФБИ-32, 2 курс, 2025
