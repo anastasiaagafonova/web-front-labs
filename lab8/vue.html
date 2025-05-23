@@ -28,8 +28,13 @@
                 <div>Имя: {{ user.name }}</div>
                 <div>Возраст: {{user.age}}</div>
                  <div>Телефон: {{user.tel}}</div>
-            </div>
-        </main>
+                 
+                 <h2>Цветы</h2>
+                 <ul>
+                    <li v-for="flower in flowers">
+                        {{ flower }}
+                    </li>
+                 </ul>
         <footer>
             &copy; Анастасия Агафонова, ФБИ-32, 2 курс, 2025
         </footer>
@@ -45,6 +50,7 @@
                             age: '20',
                             tel: '222-33-44'
                         },
+                        flowers: ['роза', 'тюльпан', 'маргаритка', 'георгин', 'одуванчик'],
                     }
                 },
                 methods: {
