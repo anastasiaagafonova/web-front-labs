@@ -10,39 +10,96 @@
     <link rel="icon" href="../favicon-32x32.png">
     <link rel="icon" href="../favicon-16x16.png">
     <style>
+        main {
+            margin: 20px 0;
+            text-align: center;
+        }
+
         button {
-            width: 100px;
-            height: 200px;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
             border-radius: 5px;
-            background-color: blueviolet;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .exchange-info {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 15px;
+            background-color: #fff;
+            margin: 20px auto;
+            width: 300px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            font-size: 18pt;
+            margin: 0 0 10px;
+        }
+
+        p {
+            font-size: 14pt;
+            margin: 5px 0;
         }
     </style>
     <script>
         function getEuroExchangeRate() {
-            const url ='https://www.cbr-xml-daily.ru/daily json.js';
+            const url = "https://www.cbr-xml-daily.ru/daily_json.js";
             fetch(url)
-                .then(function (response) {
-                    return response.json();
-                }) 
-                .then(function (json) {
-                alert (json.Valute.EUR.Value);
-                });
+            .then(function(response) {
+                return response.json();
+            })
+            .then(function(json) {
+                const euroValue = json.Valute.EUR.Value;
+                const previousValue = json.Valute.EUR.Previous;
+                const date = new Date(json.Date).toLocaleDateString('ru-RU', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                })
+
+                const difference = euroValue - previousValue;
+                const differenceText = difference > 0 ? `Поднялся на ${difference.toFixed(2)} руб.` : 
+                                    (difference < 0 ? `Опустился на ${Math.abs(difference).toFixed(2)} руб.` : 
+                                    'Без изменений');
+
+                const message = `
+                    <div class="exchange-info">
+                        <h2>Курс евро на ${date}:</h2>
+                        <p>Текущий курс: ${euroValue.toFixed(2)} руб.</p>
+                        <p>Курс за предыдущую дату: ${previousValue.toFixed(2)} руб.</p>
+                        <p>${differenceText}</p>
+                    </div>
+                `;
+  
+                document.getElementById('result').innerHTML = message;
+            })
+
+            .catch(function(error) {
+                console.error('Ошибка:', error);
+            });
         }
     </script>
 </head>
 <body>
-   <header>
+    <header>
         НГТУ, ФБ, Лабораторная работа 7
-        <hr>
     </header>
     <main>
         <button onclick="getEuroExchangeRate()">Получить курс евро</button>
-        <p>
-            <a href="https://www.cbr-xml-daily.ru/" target="_blank">Курсы валют, API</a>
-        </p>
+        <div id="result"></div>
+        <p><a href="https://www.cbr-xml-daily.ru/">Ресурс</a></p>
     </main>
     <footer>
-        &copy; Анастасия Агафонова, ФБИ-32, 2 курс, 2025
+        &copy; Агафонова Анастасия, ФБИ-32, 2 курс, 2025
     </footer>
 </body>
 </html>
