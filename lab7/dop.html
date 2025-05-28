@@ -1,99 +1,150 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Дополнительное задание</title>
-        <link rel="stylesheet" href="../main.css">
-        <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
-        <link rel="icon" href="../favicon-32x32.png">
-        <link rel="icon" href="../favicon-16x16.png">
-        <style>
-            body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            }
-            canvas {
-                max-width: 600px;
-                margin: auto;
-            }
-        </style>
-        <script>
-            function getWeatherData() {
-            const url = 'https://api.open-meteo.com/v1/forecast?latitude=55.7558&longitude=37.6173&hourly=temperature_2m,pressure_msl&current_weather=true';
-            fetch(url)
-                .then(response => response.json())
-                .then(data => {
-                    displayCurrentWeather(data.current_weather);
-                    createTemperatureChart(data.hourly.time, data.hourly.temperature_2m);
-                    createPressureChart(data.hourly.time, data.hourly.pressure_msl);
-                })
-                .catch(error => console.error('Ошибка:', error));
-            }
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Прогноз погоды в Новосибирске</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../favicon-32x32.png">
+    <link rel="icon" href="../favicon-16x16.png">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .container {
+            width: 100%;
+        }
 
-            function displayCurrentWeather(currentWeather) {
-            document.getElementById('currentWeather').innerHTML = `
-                <h2>Текущая погода</h2>
-                <p>Температура: <strong>${currentWeather.temperature} °C</strong></p>
-                <p>Скорость ветра: <strong>${currentWeather.windspeed} м/с</strong></p>
-            `;
-            }
+        .weather-info {
+            font-size: 14pt;
+            color: black;
+            line-height: 1.5;
+            background-color: #fff;
+            border-radius: 5px;
+            padding: 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
 
-            function createTemperatureChart(labels, data) {
-            new Chart(document.getElementById('temperatureChart').getContext('2d'), {
+        h1 {
+            font-size: 20pt;
+            color: #333;
+        }
+
+        #weatherChart {
+            width: 70vh;
+            height: 400px;
+            margin: 20px auto;
+            display: block;
+        }
+    </style>
+    <script>
+        let chart;
+
+        async function loadWeather() {
+            try {
+                const response = await fetch('https://api.open-meteo.com/v1/forecast?latitude=55.0415&longitude=82.9346&current=temperature_2m,relative_humidity_2m&hourly=temperature_2m,relative_humidity_2m&timezone=auto&forecast_days=1');
+                const data = await response.json();
+
+                document.getElementById('temp').textContent = data.current.temperature_2m;
+                document.getElementById('humidity').textContent = data.current.relative_humidity_2m;
+
+                const date = new Date(data.hourly.time[0]);
+                const formattedDate = date.toLocaleDateString('ru-RU', {
+                    day: 'numeric', month: 'long', year: 'numeric'
+                });
+                document.getElementById('forecastDate').innerHTML = `${formattedDate}`;
+                updateChart(data);
+                
+            } catch (error) {
+                document.getElementById('error').textContent = 'Ошибка загрузки данных';
+                console.error(error);
+            }
+        }
+
+        function updateChart(data) {
+            const ctx = document.getElementById('weatherChart');
+            const hours = data.hourly.time.map(t => new Date(t).getHours() + ':00').slice(0, 24);
+            const temps = data.hourly.temperature_2m.slice(0, 24);
+            const hums = data.hourly.relative_humidity_2m.slice(0, 24);
+
+            if (chart) chart.destroy();
+
+            chart = new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: labels,
-                    datasets: [{
-                        label: 'Температура (°C)',
-                        data: data,
-                        backgroundColor: 'rgba(75, 192, 192, 0.6)',
-                    }]
+                    labels: hours,
+                    datasets: [
+                        {
+                            label: 'Температура (°C)',
+                            data: temps,
+                            backgroundColor: 'red'
+                        },
+                        {
+                            label: 'Влажность (%)',
+                            data: hums,
+                            backgroundColor: 'green'
+                        }
+                    ]
                 },
                 options: {
+                    responsive: false,
+                    maintainAspectRatio: true,
                     scales: {
-                        y: { beginAtZero: true }
+                        x: {
+                            stacked: false
+                        },
+                        y: {
+                            beginAtZero: true
+                        }
                     }
                 }
             });
-            }
+        }
 
-            function createPressureChart(labels, data) {
-            new Chart(document.getElementById('pressureChart').getContext('2d'), {
-                type: 'line',
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        label: 'Давление (гПа)',
-                        data: data,
-                        borderColor: 'rgba(255, 99, 132, 1)',
-                        fill: false,
-                    }]
-                },
-                options: {
-                    scales: {
-                        y: { beginAtZero: true }
-                    }
-                }
-            });
-            }
-        </script>
-    </head>
-    <body>
-        <header>
-            НГТУ, ФБ, Лабораторная работа 7
-                    <hr>
-        </header>
-        <main>
-            <h1>Прогноз погоды</h1>
-            <button onclick="getWeatherData()">Получить данные о погоде</button>
-            <div id="currentWeather"></div>
-            <canvas id="temperatureChart"></canvas>
-            <canvas id="pressureChart"></canvas>
-        </main>
-        <footer>
-            &copy; Анастасия Агафонова, ФБИ-32, 2 курс, 2025
-        </footer>
-    </body>
-   
+        loadWeather();
+    </script>
+    <style>
+        #weatherChart {
+            width: 70vh;
+            height: 400px;
+            margin: 20px auto;
+            display: block;
+        }
+
+        .container {
+            width: 100%;
+        }
+        
+        .weather-info {
+            font-size: 12pt;
+            color: black;
+            line-height: 1;
+        }
+
+        h1 {
+            font-size: 16pt;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        НГТУ, ФБ, Лабораторная работа 7
+    </header>
+    <main>
+        <h1>Прогноз погоды в Новосибирске на сегодня</h1>
+        <div class="container">
+            <div class="weather-info">
+                <p><i>Дата:</i> <strong><span id="forecastDate"></span></strong></p>
+                <p><i>Температура:</i> <strong><span id="temp"></span>°C</strong></p>
+                <p><i>Влажность:</i> <strong><span id="humidity"></span>%</strong></p>
+            </div>
+            <canvas id="weatherChart"></canvas>
+        </div>
+    </main>
+    <footer>
+        &copy; Агафонова Анастасия, ФБИ-32, 2 курс, 2025
+    </footer>
+</body>
+</html>
